@@ -1,4 +1,4 @@
-import { SEARCH_MOVIE, SEARCH_TEXT } from './types';
+import { SEARCH_TV, SEARCH_MOVIE, SEARCH_TEXT } from './types';
 
 const API_KEY = "3e310aa84d4c1640df231f11e3ab3ea8";
 
@@ -25,3 +25,18 @@ export const searchMovie = (movie) => async (dispatch) => {
 	}
 }
 
+export const searchTV = (tv) => async (dispatch) => {
+	try {
+		let res = await fetch()
+		let responseJson = await res.json();
+		dispatch({
+			type: SEARCH_TV,
+			page: responseJson.page,
+			total_pages: responseJson.total_pages,
+			total_results: responseJson.total_results,
+			results: responseJson.results
+		})
+	} catch(error) {
+		console.error(error);
+	}
+}

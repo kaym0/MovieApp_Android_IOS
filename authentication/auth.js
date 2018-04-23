@@ -1,1 +1,1 @@
-https://api.themoviedb.org/3/authentication/token/new?api_key=3e310aa84d4c1640df231f11e3ab3ea8
+//https://api.themoviedb.org/3/authentication/token/new?api_key=3e310aa84d4c1640df231f11e3ab3ea8

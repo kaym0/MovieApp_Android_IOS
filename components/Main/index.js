@@ -5,30 +5,35 @@ import FooterFab from '../FooterFab';
 import * as authActions from '../../redux/actions/autheticationActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import DiscoverTV from './DiscoverTV';
+import DiscoverMovies from './DiscoveryMovies';
+
+function getRandomInt(max) {
+	return Math.floor(Math.random() * Math.floor(max));
+ }
 
 class Main extends Component {
-	componentDidMount = async () => {
-		try {
-			await (this.props.requestToken())
-			.then(this.props.requestSession(this.props.request_token));
-		} catch(e) {
-			console.log("Something went wrong!");
+	renderDiscover = () => {
+		let number = getRandomInt(100);
+
+		if (number > 50) { 
+			return <DiscoverTV/>;
+		} else {
+			return <DiscoverMovies/>
 		}
 	}
-   render(){ 
-		const navigation = this.props.navigation;
-      return (
-			<Container style={styles.container}>
-				<Content style={styles.content}>
-					<Text style={{color: 'black'}}>This is the main page</Text>
-				</Content>
-	
-					<FooterFab navigation={navigation}/>
-			</Container>
-      );
-   }
-}
 
+  render() {
+	 return (
+		 <Container>
+			<Content style={styles.content}>
+				{this.renderDiscover()}
+			</Content>
+			<FooterFab/>
+		</Container>
+	 )
+  };
+};
 
 const styles = StyleSheet.create({
 	content: {

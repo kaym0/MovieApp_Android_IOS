@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {View, StyleSheet, Text, Image} from 'react-native';
+import { Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content}  from 'native-base';
+import * as landingPage from '../../../redux/actions/landingPage';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Text, StyleSheet, Image, View } from 'react-native';
-import { Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content}  from 'native-base';
-import * as searchActions from '../../redux/actions/searchActions';
-//Object.values
-export class MovieSearch extends Component {
+
+class DiscoverMovies extends Component { 
 	constructor(props) {
 		super(props);
 		this.renderStars = this.renderStars.bind(this);
 	}
+
+
+	componentDidMount() {
+		this.props.discoverMovies();
+	}
+	/// renders stars
 	renderStars(average) {
 		let stars = average/2;
 		const a = [];
@@ -29,8 +35,9 @@ export class MovieSearch extends Component {
 			a.pop();
 		}
 	}
-  render() {
-	const Movies = Object.values(this.props.movies).map((movie,i) => (
+
+	render () { 
+		const Movies = Object.values(this.props.movies).map((movie,i) => (
 		<Card style={styles.cardMain} key={i}>
 			<CardItem style={styles.cardHeaderContainer} transparent>
 				<Text style={styles.cardHeaderText}>{movie.title}</Text>
@@ -52,26 +59,17 @@ export class MovieSearch extends Component {
 					</View>
 				</Left>
 				<Body style={styles.voteIconContainer}>
-					<Icon style={styles.voteIcon} name="thumbs-up"/>
+					<Button transparent><Icon style={styles.voteIcon} name="thumbs-up"/></Button>
 					<Text style={styles.cardFooterText}>{movie.vote_count} votes.</Text>
 				</Body>
 			</CardItem>
 		</Card>
 	));
-	 return (
-		 <Container>
-			<Content style={styles.content}>
-				{Movies}
-			</Content>
-		</Container>
-	 )
-  };
-};
+	return (<View>{Movies}</View>);
+	}
+}
 
 const styles = StyleSheet.create({
-	content: {
-		backgroundColor: "#191B28",
-	},
 	cardMain:{
 		borderTopWidth: 0,
 		borderLeftWidth: 0,
@@ -126,26 +124,33 @@ const styles = StyleSheet.create({
 	cardFooterText: {
 		color: "#DBDEDF"
 	}
-})
+});
 
-MovieSearch.propTypes = {
+
+DiscoverMovies.propTypes = {
 	page: PropTypes.number,
 	total_results: PropTypes.number,
 	total_pages: PropTypes.number,
-	movies: PropTypes.object,
+	movie: PropTypes.object,
 	searchText: PropTypes.string
  };
 
+ DiscoverMovies.getInitialProps = () => {
+
+}
+
 const mapStateToProps = (state) => ({
-	page: state.movie.page,
-	total_results: state.movie.total_results,
-	total_pages: state.movie.total_pages,
-	movies: state.movie.results
+	page: state.discover.page,
+	total_results: state.discover.total_results,
+	total_pages: state.discover.total_pages,
+	movies: state.discover.movies
 })
 
-const mapDispatchToProps = (dispatch) => ({
- // searchText: (text) => dispatch(searchActions.updateSearchText(text)), 
-});
+const mapDispatchToProps = (dispatch) =>  {
+	return {
+		discoverMovies: () => dispatch(landingPage.discoverMovies())
+	}
+};
 
-export default connect(mapStateToProps)(MovieSearch)
 
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverMovies)

@@ -4,3 +4,6 @@ export const SEARCH_MOVIE = 'SEARCH_MOVIE';
 export const SEARCH_TEXT = "SEARCH_TEXT";
 export const SET_SESSION = 'SET_SESSION';
 export const TOGGLE_FAB = 'TOGGLE_FAB';
+export const SEARCH_TV = 'SEARCH_TV';
+export const DISCOVER_MOVIES = 'DISCOVER_MOVIES';
+export const DISCOVER_TV = 'DISCOVER_TV';

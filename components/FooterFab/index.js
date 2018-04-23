@@ -7,26 +7,26 @@ import { connect } from 'react-redux';
 import FeatherIcon from 'react-native-vector-icons/Feather'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
 class FooterFab extends Component {
   render() {
 	 return (
-		<View>
-			<Fab
-				direction="up"
-				position="bottomRight"
-				style={styles.fab}
-				onPress={() => this.props.ToggleFab()}
-				active={this.props.fab}
-			>
-				<Icon name="ios-search"></Icon>
-					<Button style={{backgroundColor:'#770F34', justifyContent: 'center', alignItems: 'center'}}>
-						<MaterialIcons style={styles.icons} name="tv"/>
-					</Button>
-					<Button style={{backgroundColor: '#656893', justifyContent: 'center', alignItems: 'center'}}>
-						<Icon style={styles.icons} name="ios-film" />
-					</Button>
-			</Fab>
-		</View>
+		<Fab
+		active={this.props.fab}
+		direction="up"
+		containerStyle={{ flex: 1 }}
+		style={styles.fab}
+		position="bottomRight"
+		onPress={() => this.props.ToggleFab()}
+		>
+		<Icon name="md-share" />
+		<Button style={{ backgroundColor: '#770F34' }}>
+			<MaterialIcons name="tv" />
+		</Button>
+		<Button style={{ backgroundColor: '#656893' }}>
+			<Icon name="ios-film" />
+		</Button>
+		</Fab>
 	 );
   }
 }

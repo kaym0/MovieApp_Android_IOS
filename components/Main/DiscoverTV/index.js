@@ -1,16 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {View, StyleSheet, Text, Image} from 'react-native';
+import { Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content}  from 'native-base';
+import * as landingPage from '../../../redux/actions/landingPage';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Text, StyleSheet, Image, View } from 'react-native';
-import { Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content}  from 'native-base';
-import * as searchActions from '../../redux/actions/searchActions';
-//Object.values
-export class MovieSearch extends Component {
+
+class DiscoverTV extends Component { 
 	constructor(props) {
 		super(props);
-		this.renderStars = this.renderStars.bind(this);
+	
 	}
-	renderStars(average) {
+	componentDidMount (){
+		this.props.discoverTV();
+	};
+	/// renders stars
+	renderStars = (average) => {
 		let stars = average/2;
 		const a = [];
 		let key = 1;
@@ -29,15 +33,16 @@ export class MovieSearch extends Component {
 			a.pop();
 		}
 	}
-  render() {
-	const Movies = Object.values(this.props.movies).map((movie,i) => (
+
+	render () { 
+		const TV = Object.values(this.props.tv).map((series,i) => (
 		<Card style={styles.cardMain} key={i}>
 			<CardItem style={styles.cardHeaderContainer} transparent>
-				<Text style={styles.cardHeaderText}>{movie.title}</Text>
+				<Text style={styles.cardHeaderText}>{series.title}</Text>
 			</CardItem>
 			<CardItem style={styles.cardImageContainer} cardBody>
 				<Image 
-					source={{uri: `https://image.tmdb.org/t/p/w300${movie.poster_path}`}} 
+					source={{uri: `https://image.tmdb.org/t/p/w300${series.poster_path}`}} 
 					style={{height:300 , flex: 1}}
 					resizeMode="contain"
 				/>
@@ -45,33 +50,24 @@ export class MovieSearch extends Component {
 			<CardItem style={styles.cardFooterContainer}>
 				<Left style={styles.starIconContainer}>
 					<View style={{flexDirection: "row"}}>
-						{this.renderStars(movie.vote_average)}
+						{this.renderStars(series.vote_average)}
 					</View>
 					<View style={{flexDirection: "row"}}>
-						<Text style={styles.cardFooterText}>Avereage score: {movie.vote_average}</Text>
+						<Text style={styles.cardFooterText}>Avereage score: {series.vote_average}</Text>
 					</View>
 				</Left>
 				<Body style={styles.voteIconContainer}>
-					<Icon style={styles.voteIcon} name="thumbs-up"/>
-					<Text style={styles.cardFooterText}>{movie.vote_count} votes.</Text>
+				<Icon active style={styles.voteIcon} name="thumbs-up"/>
+					<Text style={styles.cardFooterText}>{series.vote_count} votes.</Text>
 				</Body>
 			</CardItem>
 		</Card>
-	));
-	 return (
-		 <Container>
-			<Content style={styles.content}>
-				{Movies}
-			</Content>
-		</Container>
-	 )
-  };
-};
+		));
+		return (<View>{TV}</View>)
+	}
+}
 
 const styles = StyleSheet.create({
-	content: {
-		backgroundColor: "#191B28",
-	},
 	cardMain:{
 		borderTopWidth: 0,
 		borderLeftWidth: 0,
@@ -126,26 +122,29 @@ const styles = StyleSheet.create({
 	cardFooterText: {
 		color: "#DBDEDF"
 	}
-})
+});
 
-MovieSearch.propTypes = {
+
+DiscoverTV.propTypes = {
 	page: PropTypes.number,
 	total_results: PropTypes.number,
 	total_pages: PropTypes.number,
-	movies: PropTypes.object,
+	tv: PropTypes.object,
 	searchText: PropTypes.string
  };
 
 const mapStateToProps = (state) => ({
-	page: state.movie.page,
-	total_results: state.movie.total_results,
-	total_pages: state.movie.total_pages,
-	movies: state.movie.results
+	page: state.discover.page,
+	total_results: state.discover.total_results,
+	total_pages: state.discover.total_pages,
+	tv: state.discover.tv
 })
 
-const mapDispatchToProps = (dispatch) => ({
- // searchText: (text) => dispatch(searchActions.updateSearchText(text)), 
-});
+const mapDispatchToProps = (dispatch) =>  {
+	return {
+		discoverTV: () => dispatch(landingPage.discoverTV())
+	}
+};
 
-export default connect(mapStateToProps)(MovieSearch)
 
+export default connect(mapStateToProps, mapDispatchToProps)(DiscoverTV)

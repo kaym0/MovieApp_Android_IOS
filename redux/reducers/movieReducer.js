@@ -29,7 +29,7 @@ results : {
 }
 */
 
-export const searchReducer = (state = initialState, action) => {
+export const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SEARCH_MOVIE:		
 		function toObject(arr) {
