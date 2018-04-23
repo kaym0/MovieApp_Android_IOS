@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Item, Input, Icon, Button, Footer, FooterTab, Header } from 'native-base';
-import * as searchActions from '../redux/actions/searchActions'
+import * as searchActions from '../../redux/actions/searchActions'
 import PropTypes from 'prop-types';
 
 class FooterSearchbar extends Component {
@@ -58,7 +58,7 @@ class FooterSearchbar extends Component {
 				</Item>
 				<Item verticle style={{alignItems: 'center', justifyContent: 'center',borderColor: 'transparent'}}>
 					<Button transparent verticle onPress={this._search}> 						
-						<Icon name="ios-search"/>
+						<Icon style={styles.icon} name="ios-search"/>
 					</Button>
 				</Item>
 			</Footer>
@@ -68,11 +68,14 @@ class FooterSearchbar extends Component {
 
 const styles = StyleSheet.create({
 	footer: {
-		backgroundColor: '#201E10',
+		backgroundColor: '#1E202D',
 		justifyContent: 'center',
 		alignItems: 'center',
 		paddingLeft: 10,
 		paddingRight: 10,
+	},
+	icon: {
+		color: "#266B8D"
 	},
 	searchinput: {
 		flexDirection: 'column',
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
 		margin: 0,
 		borderWidth: 0,
 		fontSize: 10,
-		backgroundColor: 'white',
+		backgroundColor: '#F1F0EF',
 		height: 30,
 		borderRadius: 100
 	}

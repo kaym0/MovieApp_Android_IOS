@@ -9,7 +9,7 @@ const initialState = {};
 
 const persistConfig = {
 	key: 'root',
-	//blacklist: ['fonts'],
+	blacklist: ['local'],
 	storage: storage,
 };
 

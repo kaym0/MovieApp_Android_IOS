@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Content, Container } from 'native-base';
-import FooterSearchBar from './footerSearchbar';
-import * as authActions from '../redux/actions/autheticationActions';
+import FooterFab from '../FooterFab';
+import * as authActions from '../../redux/actions/autheticationActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -19,11 +19,11 @@ class Main extends Component {
 		const navigation = this.props.navigation;
       return (
 			<Container style={styles.container}>
-				<Content>
+				<Content style={styles.content}>
 					<Text style={{color: 'black'}}>This is the main page</Text>
 				</Content>
 	
-					<FooterSearchBar navigation={navigation}/>
+					<FooterFab navigation={navigation}/>
 			</Container>
       );
    }
@@ -31,6 +31,9 @@ class Main extends Component {
 
 
 const styles = StyleSheet.create({
+	content: {
+		backgroundColor: "#191B28",
+	},
 	container: {
 		flex: 1
 	}

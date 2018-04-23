@@ -7,12 +7,17 @@
     "test": "jest",
     "debugger": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
   },
+	"rnpm": {
+		"assets": [
+		"./assets/fonts/"
+		]
+	},
   "dependencies": {
     "lodash": "^4.17.5",
     "native-base": "^2.4.2",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
-    "react-native": "0.55.3",
+    "react-native": "^0.55.3",
     "react-native-svg": "^6.3.1",
     "react-navigation": "^1.5.11",
     "react-redux": "^5.0.7",

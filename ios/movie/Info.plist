@@ -65,6 +65,28 @@
 		<string>rubicon-icon-font.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>Feather.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>adobecaslon.ttf</string>
+		<string>antonreg.ttf</string>
+		<string>bungee.ttf</string>
+		<string>CinzelDecorative-Black.ttf</string>
+		<string>cinzeldecorativebold.ttf</string>
+		<string>cinzeldecorativeregular.ttf</string>
+		<string>kionaitalic.ttf</string>
+		<string>kionaregular.ttf</string>
+		<string>lato_regular.ttf</string>
+		<string>montserrat_bold.ttf</string>
+		<string>montserrat_regular.ttf</string>
+		<string>montserrat_semibold.ttf</string>
+		<string>opensans_semibold.ttf</string>
+		<string>opensansbold.ttf</string>
+		<string>oswald_regular.ttf</string>
+		<string>raleway_bold.ttf</string>
+		<string>raleway_medium.ttf</string>
+		<string>raleway_semibold.ttf</string>
+		<string>Kiona-Itallic.ttf</string>
+		<string>Kiona-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

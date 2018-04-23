@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
-import Layout from '../components/layout.js';
-import Main from '../components/main';
-import PageTwo from '../components/page2';
-import Sidebar from '../components/sidebar';
+import Layout from '../components/Layout';
+import Main from '../components/Main';
+import PageTwo from '../components/Page2';
+import Sidebar from '../components/Sidebar';
 import SearchMovie from '../components/SearchMovie';
 /**
  * @todo

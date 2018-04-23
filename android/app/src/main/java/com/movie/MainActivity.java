@@ -1,4 +1,4 @@
-package com.android.movie;
+package com.movie;
 
 import com.facebook.react.ReactActivity;
 

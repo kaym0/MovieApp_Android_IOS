@@ -46,18 +46,18 @@ const styles = StyleSheet.create({
    },
    header: {
 		marginTop: 0,
-      backgroundColor: '#201E10',
+      backgroundColor: "#1E202D",
       alignItems: 'center',
       justifyContent: 'center',
 		borderBottomColor: "#847979",
 		borderColor: "#847979",
    },
    headerTitle: {
-      color: 'white',
+      color: "#65656D",
       justifyContent: 'center',
    },
    headerIcon: {
-      color: 'white',
+      color: "#FFFFFE",
       fontSize: 35
    }
 })
