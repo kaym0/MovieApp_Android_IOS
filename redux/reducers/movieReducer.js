@@ -1,7 +1,7 @@
 import { SEARCH_TEXT, SEARCH_MOVIE } from '../actions/types';
 import _ from 'lodash';
 
-initialState = {
+const movieState = {
 	page: null,
 	total_results: null,
 	total_pages: null,
@@ -28,18 +28,19 @@ results : {
 	release_date: null
 }
 */
+//function to turn 'results' array into an object for easier usage. god damn arrays	
+function toObject(arr) {
+	var rv = {};
+	for (var i = 0; i < arr.length; ++i)
+	  rv[i] = arr[i];
+	return rv;
+ }
 
-export const movieReducer = (state = initialState, action) => {
+export const movieReducer = (state = movieState, action) => {
 	switch (action.type) {
-		case SEARCH_MOVIE:		
-		function toObject(arr) {
-			var rv = {};
-			for (var i = 0; i < arr.length; ++i)
-			  rv[i] = arr[i];
-			return rv;
-		 }
+		case SEARCH_MOVIE:	
+		 //let's assign our array to become an object here.
 		 var newobject = toObject(action.results);
-		 console.log(newobject);
 			return {
 				...state,
 				page: action.page,
@@ -47,6 +48,7 @@ export const movieReducer = (state = initialState, action) => {
 				total_pages: action.total_pages,
 				results: newobject
 			}
+			// updates text
 		case SEARCH_TEXT:
 			return {
 				...state,

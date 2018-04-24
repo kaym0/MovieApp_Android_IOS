@@ -1,39 +1,40 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
-import { List, ListItem} from 'native-base'
-import PropTypes from 'prop-types';
-class componentName extends Component {
-  render() {
-    return (
-      <View>
-        <List>
-           <ListItem>
-              <Text style={styles.items}>Main</Text>
-           </ListItem>
-           <ListItem>
-              <Text style={styles.items}>Test</Text>
-           </ListItem>
-        </List>
-      </View>
+import React from 'react';
+import { View, Text, StyleSheet, AppRegistry } from 'react-native';
+import { Container, Content, List, ListItem } from 'native-base'
+const routes = ["Main", "Settings"]
 
-    );
-  }
+export default class SideBar extends React.Component {
+	render() {
+		return (
+			<Container style={styles.content}>
+				<List
+				style={{paddingLeft: -50}}
+					dataArray={routes}
+					renderRow={data => {
+					return (
+						<ListItem
+							button
+							style={{justifyContent: 'center'}}
+							onPress={() => this.props.navigation.navigate(data)}>
+							<Text style={styles.listText}>{data}</Text>
+						</ListItem>
+					);
+					}}
+				/>
+			</Container>
+		);
+	}
 }
 
+
 const styles = StyleSheet.create({
-   items: {
-      fontFamily: "roboto"
-   }
+	content: {
+		backgroundColor: "#191B28"
+	},
+	listText: {
+		color: "#DBDEDF",
+		textAlign: 'center', 
+		fontFamily: 'Kiona', 
+		fontSize: 20
+	}
 });
-
-const mapStateToProps = (state) => ({
-  
-})
-
-const mapDispatchToProps = {
-  
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(componentName);
-

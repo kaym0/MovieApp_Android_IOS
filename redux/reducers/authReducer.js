@@ -1,13 +1,13 @@
 import { SET_SESSION, REQUEST_TOKEN } from '../actions/types';
 
 
-initialState = {
+const authState = {
 	request_token: "",
 	session_id: ""
 }
 
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = authState, action) => {
 	switch(action.type) {
 		case REQUEST_TOKEN:
 			return {

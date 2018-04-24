@@ -40,7 +40,7 @@ class DiscoverMovies extends Component {
 		const Movies = Object.values(this.props.movies).map((movie,i) => (
 		<Card style={styles.cardMain} key={i}>
 			<CardItem style={styles.cardHeaderContainer} transparent>
-				<Text style={styles.cardHeaderText}>{movie.title}</Text>
+				
 			</CardItem>
 			<CardItem style={styles.cardImageContainer} cardBody>
 				<Image 
@@ -65,7 +65,7 @@ class DiscoverMovies extends Component {
 			</CardItem>
 		</Card>
 	));
-	return (<View>{Movies}</View>);
+	return (<Container style={{flex: 1.6}}><Content horizontal={true}>{Movies}</Content></Container>);
 	}
 }
 
@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
 	},
 	cardFooterContainer: {
 		backgroundColor: "#1E202D",
+		flexWrap: 'wrap',
 		borderTopWidth: 0,
 		borderLeftWidth: 0,
 		borderRightWidth: 0,

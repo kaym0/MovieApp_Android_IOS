@@ -38,7 +38,7 @@ class DiscoverTV extends Component {
 		const TV = Object.values(this.props.tv).map((series,i) => (
 		<Card style={styles.cardMain} key={i}>
 			<CardItem style={styles.cardHeaderContainer} transparent>
-				<Text style={styles.cardHeaderText}>{series.title}</Text>
+				<Text style={styles.cardHeaderText}>{series.name}</Text>
 			</CardItem>
 			<CardItem style={styles.cardImageContainer} cardBody>
 				<Image 

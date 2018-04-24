@@ -1,7 +1,7 @@
 import { SEARCH_TV } from '../actions/searchActions';
 import _ from 'lodash';
 
-initialState = {
+const tvState = {
 	page: null,
 	total_results: null,
 	total_pages: null,
@@ -17,7 +17,7 @@ function toObject(arr) {
 	return rv;
  }
 
-export const tvReducer = (state = initialState, action) => {
+export const tvReducer = (state = tvState, action) => {
 	switch (action.type) {
 		case SEARCH_TV:		
 		 var newobject = toObject(action.results);
