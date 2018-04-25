@@ -8,3 +8,5 @@ export const SEARCH_TV = 'SEARCH_TV';
 export const DISCOVER_MOVIES = 'DISCOVER_MOVIES';
 export const DISCOVER_TV = 'DISCOVER_TV';
 export const SETTINGS_DISCOVER = 'SETTINGS_DISCOVER';
+export const GET_MOVIE = 'GET_MOVIE';
+export const GET_TV = 'GET_TV';

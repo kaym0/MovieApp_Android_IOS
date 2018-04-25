@@ -1,4 +1,4 @@
-import { DISCOVER_TV, DISCOVER_MOVIES } from '../actions/types';
+import { GET_TV, GET_MOVIE, DISCOVER_TV, DISCOVER_MOVIES } from '../actions/types';
 import _ from 'lodash';
 
 const discoverState = {
@@ -7,6 +7,8 @@ const discoverState = {
 	total_pages: 0,
 	tv : {},
 	movies: {},
+	movieInfoKey: 0,
+	tvInfoKey: 0,
 }
 //function to turn 'results' array into an object for easier usage. god damn arrays	
 function toObject(arr) {
@@ -20,7 +22,7 @@ export const discoverReducer = (state = discoverState, action) => {
 	switch (action.type) {
 		case DISCOVER_MOVIES:	
 		 //let's assign our array to become an object here.
-		 var movies = toObject(action.results);
+		 let movies = toObject(action.results);
 			return {
 				...state,
 				page: action.page,
@@ -29,13 +31,23 @@ export const discoverReducer = (state = discoverState, action) => {
 				movies: movies
 			}
 		case DISCOVER_TV:		
-		 var tvSeries = toObject(action.results);
+		 let tvSeries = toObject(action.results);
 			return {
 				...state,
 				page: action.page,
 				total_results: action.total_results,
 				total_pages: action.total_pages,
 				tv: tvSeries
+			}
+		case GET_MOVIE:
+			return {
+				...state,
+				movieInfoKey: action.key
+			}
+		case GET_TV:
+			return {
+				...state,
+				tvInfoKey: action.key
 			}
 		default:
 			return state;

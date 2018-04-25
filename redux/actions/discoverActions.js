@@ -1,4 +1,4 @@
-import { DISCOVER_MOVIES, DISCOVER_TV } from './types' 
+import { GET_TV, GET_MOVIE, DISCOVER_MOVIES, DISCOVER_TV } from './types' 
 
 const API_KEY = '3e310aa84d4c1640df231f11e3ab3ea8';
 
@@ -23,5 +23,19 @@ export const discoverTV = () => async dispatch => {
 		total_results: response.total_results,
 		total_pages: response.total_pages,
 		results: response.results
+	})
+}
+
+export const update_Movie_Key = (key) => dispatch => {
+	dispatch({
+		type: GET_MOVIE,
+		key: key
+	})
+}
+
+export const update_TV_Key = (key) => dispatch => {
+	dispatch({
+		type: GET_TV,
+		key: key
 	})
 }

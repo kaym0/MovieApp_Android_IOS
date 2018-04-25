@@ -21,7 +21,7 @@ class FooterFab extends Component {
 		>
 		<Icon name="md-share" />
 		<Button style={{ backgroundColor: '#770F34' }}>
-			<MaterialIcons name="tv" />
+			<MaterialIcons style={styles.icons} name="tv" />
 		</Button>
 		<Button style={{ backgroundColor: '#656893' }}>
 			<Icon name="ios-film" />
@@ -37,10 +37,10 @@ FooterFab.propTypes = {
 }
 const styles = StyleSheet.create({
 	fab : {
-		backgroundColor: "#266B8D",
+		backgroundColor: "#D91A5F",//"#266B8D",
 	},
 	icons: {
-		fontSize: 25,
+		fontSize: 20,
 		color: 'white'
 	},
 });

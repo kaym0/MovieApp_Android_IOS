@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
-import { Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content}  from 'native-base';
-import * as landingPage from '../../../redux/actions/landingPage';
+import { TouchableHighlight, View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
+import { Header,Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content}  from 'native-base';
+import * as discoverActions from '../../../redux/actions/discoverActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import MovieDescription from './description';
+
 
 class DiscoverMovies extends Component { 
 	constructor(props) {
 		super(props);
-		this.renderStars = this.renderStars.bind(this);
+		//this.renderStars = this.renderStars.bind(this);
+		this.updateDisplayInfo = this.updateDisplayInfo.bind(this)
 	}
 
 
@@ -16,7 +19,7 @@ class DiscoverMovies extends Component {
 		this.props.discoverMovies();
 	}
 	/// renders stars
-	renderStars(average) {
+	/*renderStars(average) {
 		let stars = average/2;
 		const a = [];
 		let key = 1;
@@ -34,42 +37,59 @@ class DiscoverMovies extends Component {
 			return a;
 			a.pop();
 		}
+	}*/
+
+	updateDisplayInfo = (i) => {
+		this.props.update_Movie_Key(i)
 	}
 
 	render () { 
 		const Movies = Object.values(this.props.movies).map((movie,i) => (
-		<Card style={styles.cardMain} key={i}>
-			<CardItem style={styles.cardHeaderContainer} transparent>
-				
-			</CardItem>
-			<CardItem style={styles.cardImageContainer} cardBody>
-				<Image 
+		<TouchableHighlight key={i} onPress={() => this.updateDisplayInfo(i)}>
+			<Card style={styles.cardMain}>
+				<CardItem style={styles.cardImageContainer} cardBody>
+					<Image 
+					button
 					source={{uri: `https://image.tmdb.org/t/p/w300${movie.poster_path}`}} 
 					style={{height:300 , flex: 1}}
 					resizeMode="contain"
-				/>
-			</CardItem>
-			<CardItem style={styles.cardFooterContainer}>
-				<Left style={styles.starIconContainer}>
-					<View style={{flexDirection: "row"}}>
-						{this.renderStars(movie.vote_average)}
-					</View>
-					<View style={{flexDirection: "row"}}>
-						<Text style={styles.cardFooterText}>Avereage score: {movie.vote_average}</Text>
-					</View>
-				</Left>
-				<Body style={styles.voteIconContainer}>
-					<Button transparent><Icon style={styles.voteIcon} name="thumbs-up"/></Button>
-					<Text style={styles.cardFooterText}>{movie.vote_count} votes.</Text>
-				</Body>
-			</CardItem>
-		</Card>
+					/>
+				</CardItem>
+			</Card>
+		</TouchableHighlight>
 	));
-	return (<Container style={{flex: 1.6}}><Content horizontal={true}>{Movies}</Content></Container>);
+	return (
+				<Container>
+					<View style={styles.container}>
+						{ (typeof this.props.movies[0]) !== "undefined"
+						? <MovieDescription {...this.props}/> 
+						: null 
+						}
+					</View>
+					<Container style={{flex: 0.1	, justifyContent: 'flex-end', backgroundColor: '#1E202D'}}>
+						<Text style={styles.listName}>Popular</Text>
+					</Container>
+					<Container style={{flex: 2}}>
+						<Content horizontal={true}>
+							{Movies}
+						</Content>
+					</Container>
+				</Container>);
 	}
 }
 
 const styles = StyleSheet.create({
+	listName: {
+		color: "#DBDEDF",
+		justifyContent: 'center',
+		textAlign: 'center',
+		fontFamily: "Kiona",
+		fontSize: 15
+	},
+	 container: {
+		flex: 2,
+		alignItems: 'center',
+	 },
 	cardMain:{
 		borderTopWidth: 0,
 		borderLeftWidth: 0,
@@ -79,7 +99,9 @@ const styles = StyleSheet.create({
 		borderColor: "#323440"
 	},
 	cardImageContainer: {
-		height:300, 
+		height: 350,
+		width: 200,
+		flex: 1,
 		backgroundColor: "#1E202D", 
 	},
 	cardHeaderContainer: {
@@ -144,12 +166,14 @@ const mapStateToProps = (state) => ({
 	page: state.discover.page,
 	total_results: state.discover.total_results,
 	total_pages: state.discover.total_pages,
-	movies: state.discover.movies
+	movies: state.discover.movies,
+	displayKey: state.discover.movieInfoKey,
 })
 
 const mapDispatchToProps = (dispatch) =>  {
 	return {
-		discoverMovies: () => dispatch(landingPage.discoverMovies())
+		discoverMovies: () => dispatch(discoverActions.discoverMovies()),
+		update_Movie_Key: (key) => dispatch(discoverActions.update_Movie_Key(key)),
 	}
 };
 

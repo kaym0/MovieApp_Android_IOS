@@ -21,15 +21,20 @@ class Main extends Component {
 	}
 
 	renderDiscover = () => {
-		return <DiscoverMovies/>
+		if (this.props.discoverSettings === "Movies") {
+			return <DiscoverMovies/>
+		} 
+
+		if (this.props.discoverSettings === "TV") { 
+			return <DiscoverTV/>
+		}
 	}
 
   render() {
 	 return (
-		 <Container>
-			<Container style={{flex: 1}}></Container>
+		 <Container style={{backgroundColor: "#191B28"}}>
 				{this.renderDiscover()}
-		<FooterFab/>
+				<FooterFab/>
 		</Container>
 	 )
   };
@@ -56,14 +61,13 @@ const mapStateToProps = (state) => ({
    request_token: state.auth.request_token,
 	session_id: state.auth.session_id,
 	fab: state.local.fab,
-	
+	discoverSettings: state.settings.discover
 })
 
 const mapDispatchToProps = (dispatch) => ({
   requestToken: () => dispatch(authActions.requestToken()),
   requestSession: () => dispatch(authActions.requestSession()),
   ToggleFab: () => dispatch(fabActions.ToggleFab()),
-  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

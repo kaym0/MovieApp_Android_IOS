@@ -1,20 +1,21 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
-import { Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content}  from 'native-base';
-import * as landingPage from '../../../redux/actions/landingPage';
+import { TouchableHighlight, View, StyleSheet, Text, Image } from 'react-native';
+import { Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content }  from 'native-base';
+import * as discoverActions from '../../../redux/actions/discoverActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import TVDescription from './description'
 
 class DiscoverTV extends Component { 
 	constructor(props) {
 		super(props);
-	
+	this.updateDisplayInfo = this.updateDisplayInfo.bind(this);
 	}
 	componentDidMount (){
 		this.props.discoverTV();
 	};
 	/// renders stars
-	renderStars = (average) => {
+/*	renderStars = (average) => {
 		let stars = average/2;
 		const a = [];
 		let key = 1;
@@ -33,41 +34,59 @@ class DiscoverTV extends Component {
 			a.pop();
 		}
 	}
+*/
+
+	updateDisplayInfo = (new_key) => {
+		this.props.update_TV_Key(new_key)
+	}
 
 	render () { 
 		const TV = Object.values(this.props.tv).map((series,i) => (
-		<Card style={styles.cardMain} key={i}>
-			<CardItem style={styles.cardHeaderContainer} transparent>
-				<Text style={styles.cardHeaderText}>{series.name}</Text>
-			</CardItem>
-			<CardItem style={styles.cardImageContainer} cardBody>
-				<Image 
-					source={{uri: `https://image.tmdb.org/t/p/w300${series.poster_path}`}} 
-					style={{height:300 , flex: 1}}
-					resizeMode="contain"
-				/>
-			</CardItem>
-			<CardItem style={styles.cardFooterContainer}>
-				<Left style={styles.starIconContainer}>
-					<View style={{flexDirection: "row"}}>
-						{this.renderStars(series.vote_average)}
-					</View>
-					<View style={{flexDirection: "row"}}>
-						<Text style={styles.cardFooterText}>Avereage score: {series.vote_average}</Text>
-					</View>
-				</Left>
-				<Body style={styles.voteIconContainer}>
-				<Icon active style={styles.voteIcon} name="thumbs-up"/>
-					<Text style={styles.cardFooterText}>{series.vote_count} votes.</Text>
-				</Body>
-			</CardItem>
-		</Card>
+		<TouchableHighlight key={i} onPress={() => this.updateDisplayInfo(i)}>
+			<Card style={styles.cardMain}>
+				<CardItem style={styles.cardImageContainer} cardBody>
+					<Image 
+						source={{uri: `https://image.tmdb.org/t/p/w300${series.poster_path}`}} 
+						style={{height:300 , flex: 1}}
+						resizeMode="contain"
+					/>
+				</CardItem>
+			</Card>
+		</TouchableHighlight>
 		));
-		return (<View>{TV}</View>)
+		return (
+			<Container>
+				<View style={styles.container}>
+					{ (typeof this.props.tv[0]) !== "undefined"
+					? <TVDescription {...this.props}/> 
+					: null 
+					}
+				</View>
+				<Container style={{flex: 0.1	, justifyContent: 'flex-end', backgroundColor: '#1E202D'}}>
+					<Text style={styles.listName}>Popular</Text>
+				</Container>
+				<Container style={{flex: 2}}>
+					<Content horizontal={true}>
+						{TV}
+					</Content>
+				</Container>
+			</Container>
+		);
 	}
 }
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 2,
+		alignItems: 'center',
+	 },
+	 listName: {
+		color: "#DBDEDF",
+		justifyContent: 'center',
+		textAlign: 'center',
+		fontFamily: "Kiona",
+		fontSize: 15
+	},
 	cardMain:{
 		borderTopWidth: 0,
 		borderLeftWidth: 0,
@@ -77,51 +96,11 @@ const styles = StyleSheet.create({
 		borderColor: "#323440"
 	},
 	cardImageContainer: {
-		height:300, 
+		height: 350,
+		width: 200,
+		flex: 1,
 		backgroundColor: "#1E202D", 
 	},
-	cardHeaderContainer: {
-		backgroundColor: "#1E202D",
-		borderTopWidth: 0,
-		borderLeftWidth: 0,
-		borderRightWidth: 0,
-		borderBottomWidth: 0,
-		borderColor: "#323440",
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	cardFooterContainer: {
-		backgroundColor: "#1E202D",
-		borderTopWidth: 0,
-		borderLeftWidth: 0,
-		borderRightWidth: 0,
-		borderBottomWidth: 0,
-		borderColor: "#323440",
-	},
-	cardHeaderText: {
-		color: "#DBDEDF",
-		fontSize: 25,
-		fontFamily: 'Kiona'
-	},
-	voteIcon: {
-		color: "#266B8D",
-	},
-	voteIconContainer:{
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center', 
-		flexDirection: 'column'
-	},
-	staricon: {
-		color: "#266B8D",
-	},
-	starIconContainer: {
-		flexDirection: "column",
-		flex: 1, 
-	},
-	cardFooterText: {
-		color: "#DBDEDF"
-	}
 });
 
 
@@ -130,19 +109,23 @@ DiscoverTV.propTypes = {
 	total_results: PropTypes.number,
 	total_pages: PropTypes.number,
 	tv: PropTypes.object,
-	searchText: PropTypes.string
+	searchText: PropTypes.string,
+	displayKey: PropTypes.number,
+	getTVKey: PropTypes.func
  };
 
 const mapStateToProps = (state) => ({
 	page: state.discover.page,
 	total_results: state.discover.total_results,
 	total_pages: state.discover.total_pages,
-	tv: state.discover.tv
+	tv: state.discover.tv,
+	displayKey: state.discover.tvInfoKey
 })
 
 const mapDispatchToProps = (dispatch) =>  {
 	return {
-		discoverTV: () => dispatch(landingPage.discoverTV())
+		discoverTV: () => dispatch(discoverActions.discoverTV()),
+		update_TV_Key: (new_key) => dispatch(discoverActions.update_TV_Key(new_key)),
 	}
 };
 
