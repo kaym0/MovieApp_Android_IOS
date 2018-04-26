@@ -31,4 +31,4 @@ Section has not yet been written
 
 ## Images
 
- <img src="/images/Main.png" height='565' width='317'/>
+ <img src="/images/Main.png" height='694' width='348'/>
