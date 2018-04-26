@@ -91,11 +91,9 @@ class DiscoverTV extends Component {
 					}
 				</View>
 				<Container style={{flex: 0.2, flexDirection: 'row', backgroundColor: '#1E202D'}}>
-					<View style={{flex:0.5, alignContent: 'flex-end'}}><Text style={styles.listName}>Popular</Text></View>
-					<View style={{flex: 2	, flexDirection: 'row', justifyContent: 'flex-end'}}>
-						<Button  transparent style={{flex: 0.15, justifyContent: 'center', }}><Icon style={{flex: 1, textAlign:'right', color: "#DBDEDF"}} type="Entypo" name="chevron-thin-left"/></Button>
-						<Text style={{flex: 0.2, textAlign: 'right', color: "#DBDEDF"}}>Back To Start</Text>
-					</View>
+					<View style={{flex:0.5, alignContent: 'flex-end'}}>
+						<Text style={styles.listName}>Popular</Text>
+					</View>	
 				</Container>
 				<Container style={{flex: 2}}>
 						<InfiniteScrollView
