@@ -1,4 +1,4 @@
-import { GET_TV, GET_MOVIE, DISCOVER_TV, DISCOVER_MOVIES } from '../actions/types';
+import { REFRESHING, CHANGE_DISCOVER_PAGE_TV, GET_TV, GET_MOVIE, DISCOVER_TV, DISCOVER_MOVIES } from '../actions/types';
 import _ from 'lodash';
 
 const discoverState = {
@@ -9,6 +9,7 @@ const discoverState = {
 	movies: {},
 	movieInfoKey: 0,
 	tvInfoKey: 0,
+	refreshing: true
 }
 //function to turn 'results' array into an object for easier usage. god damn arrays	
 function toObject(arr) {
@@ -48,6 +49,25 @@ export const discoverReducer = (state = discoverState, action) => {
 			return {
 				...state,
 				tvInfoKey: action.key
+			}
+		case CHANGE_DISCOVER_PAGE_TV:
+//		tvSeries = toObject(action.results);
+			var result = Object.keys(state.tv).map(function(key) {
+				return state.tv[key];
+			});
+			var updated = result.concat(action.results);
+			let fullyUpdated = toObject(updated);
+			return {
+				...state,
+				page: action.page,
+				total_results: action.total_results,
+				total_pages: action.total_pages,
+				tv: fullyUpdated
+			}
+		case REFRESHING:
+			return {
+				...state,
+				refreshing: action.payload
 			}
 		default:
 			return state;

@@ -2,7 +2,7 @@ import {SETTINGS_DISCOVER} from '../actions/types'
 
 
 const optionsState = {
-	discover: "Movies"
+	discover: "TV"
 }
 
 export const settingsReducer = (state = optionsState, action) => {

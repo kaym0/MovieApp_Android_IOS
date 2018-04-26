@@ -68,11 +68,13 @@ Layout.propTypes = {
 	requestSession: PropTypes.func,
 	request_token: PropTypes.string,
 	session_id: PropTypes.string,
+	page: PropTypes.number
 }
 
 const mapStateToProps = (state) => ({
    request_token: state.auth.request_token,
-   session_id: state.auth.session_id
+   session_id: state.auth.session_id,
+	 page: state.discover.page
 })
 
 const mapDispatchToProps = (dispatch) => ({

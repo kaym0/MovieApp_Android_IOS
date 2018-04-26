@@ -1,7 +1,7 @@
 
 import { authReducer } from './authReducer';
 import { movieReducer }  from './movieReducer';
-import { fabReducer } from './fabReducer'
+import { localReducer } from './localReducer'
 import { tvReducer } from './tvReducer'
 import { discoverReducer } from './discoverReducer';
 import { settingsReducer } from './settingsReducer'
@@ -11,5 +11,5 @@ export default rootReducer = {
 	tv: tvReducer,
 	discover: discoverReducer,
 	settings: settingsReducer,
-	local: fabReducer,
+	local: localReducer,
 };

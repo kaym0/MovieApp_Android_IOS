@@ -20,12 +20,12 @@ class TVDescription extends Component {
 						<Image style = {styles.poster} source={{ uri: `https://image.tmdb.org/t/p/w300${this.props.tv[this.props.displayKey].poster_path}` }}/>
 					</Card>
 					<Card style={styles.descriptionTextCard}>
-						<CardItem header style={styles.descriptionHeaderContainer}>
-							<Title numberOfLines={3} style={styles.descriptionHeaderText}>{this.props.tv[this.props.displayKey].name}</Title>
+						<CardItem style={styles.descriptionHeaderContainer}>
+							<Text numberOfLines={2} style={styles.descriptionHeaderText}>{this.props.tv[this.props.displayKey].name}</Text>
 						</CardItem>
 						<CardItem cardBody style={styles.descriptionBodyContainer}>
 							<Body style={styles.descriptionBody}>
-								<Text style={styles.descriptionBodyText} numberOfLines={8}>{this.props.tv[this.props.displayKey].overview}</Text>
+								<Text style={styles.descriptionBodyText} numberOfLines={9}>{this.props.tv[this.props.displayKey].overview}</Text>
 							</Body>
 						</CardItem>
 						<CardItem button style={styles.descriptionFooterContainer}>
@@ -46,7 +46,7 @@ TVDescription.propTypes = {
 
 const styles = StyleSheet.create({
 	descriptionButton: {
-		backgroundColor: "#D91A5F"
+		backgroundColor: "#6EBFFC"
 	},
 	descriptionBody: {
 		backgroundColor: 'rgba(0,0,0,0.3)',
@@ -73,16 +73,16 @@ const styles = StyleSheet.create({
 	},
 	descriptionHeaderText: {
 		color: "#DBDEDF",
-		flexWrap: 'wrap',
 		fontFamily: "Kiona",
-		fontSize: 20
+		fontSize: 20,
+		textAlign: 'center',
+		justifyContent: 'center'
 	},
 	descriptionHeaderContainer: {
-		flex: 0.5,
-		alignItems: 'flex-start',
-		flexWrap: "wrap",
-		backgroundColor: "transparent",
-		justifyContent: "center",
+		flex: 1,
+		flexDirection: 'row',
+		backgroundColor: 'transparent',
+		justifyContent: 'center',
 	},
 	descriptionTextCard: {
 		flex: 3, 

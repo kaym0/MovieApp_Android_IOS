@@ -37,7 +37,7 @@ FooterFab.propTypes = {
 }
 const styles = StyleSheet.create({
 	fab : {
-		backgroundColor: "#D91A5F",//"#266B8D",
+		backgroundColor: "#6EBFFC",//"#ED4D4D",//"#266B8D",
 	},
 	icons: {
 		fontSize: 20,
