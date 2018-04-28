@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { StackNavigator, DrawerNavigator } from 'react-navigation';
+
+//components
 import Layout from '../components/Layout';
 import Main from '../components/Main';
-import PageTwo from '../components/Page2';
 import Sidebar from '../components/Sidebar';
 import SearchMovie from '../components/SearchMovie';
 import Settings from '../components/Settings'
+import Login from '../components/Login'
 /**
  * @todo
  * import { Transitioner } from 'react-navigation';
@@ -21,7 +23,8 @@ import Settings from '../components/Settings'
 
  const DrawerStack =  DrawerNavigator({
 	Main: {screen: Main},
-	Settings: {screen: Settings}
+	Settings: {screen: Settings},
+	Login: { screen: Login },
 },
 {
 	contentComponent: props => <Sidebar {...props}/>
@@ -31,6 +34,7 @@ import Settings from '../components/Settings'
 export const AppNavigator = StackNavigator({
 	Main: { screen: DrawerStack },
 	SearchMovie: { screen: SearchMovie },
+	Login: { screen: Login },
 }, 
 { 
 	navigationOptions: { 

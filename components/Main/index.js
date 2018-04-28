@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import DiscoverTV from './DiscoverTV';
 import DiscoverMovies from './DiscoveryMovies';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import * as fabActions from '../../redux/actions/fabActions';
+import * as localActions from '../../redux/actions/localActions';
 
 //Random number generators
 function getRandomInt(max) {
@@ -67,7 +67,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   requestToken: () => dispatch(authActions.requestToken()),
   requestSession: () => dispatch(authActions.requestSession()),
-  ToggleFab: () => dispatch(fabActions.ToggleFab()),
+  ToggleFab: () => dispatch(localActions.ToggleFab()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

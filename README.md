@@ -21,6 +21,7 @@ An application for both iOS and Android featuring The Movie Database as main sou
 - redux-thunk
 - lodash
 - prop-types
+- react-native-infinite-scroll-view
 - more to come
 
 

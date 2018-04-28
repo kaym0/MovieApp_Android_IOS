@@ -90,10 +90,8 @@ class DiscoverTV extends Component {
 					: null 
 					}
 				</View>
-				<Container style={{flex: 0.2, flexDirection: 'row', backgroundColor: '#1E202D'}}>
-					<View style={{flex:0.5, alignContent: 'flex-end'}}>
+				<Container style={{flex: 0.1, flexDirection: 'row', justifyContent: 'center', backgroundColor: '#1E202D'}}>
 						<Text style={styles.listName}>Popular</Text>
-					</View>	
 				</Container>
 				<Container style={{flex: 2}}>
 						<InfiniteScrollView

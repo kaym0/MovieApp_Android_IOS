@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Fab, Icon, Button, Title } from 'native-base'
-import * as fabActions from '../../redux/actions/fabActions';
+import * as localActions from '../../redux/actions/localActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FeatherIcon from 'react-native-vector-icons/Feather'
@@ -51,7 +51,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		ToggleFab: () => dispatch(fabActions.ToggleFab()),
+		ToggleFab: () => dispatch(localActions.ToggleFab()),
 	}
 };
 

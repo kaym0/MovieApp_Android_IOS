@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { Content, Container } from 'native-base';
+import { Root } from 'native-base';
 import { Provider } from 'react-redux';
 import { StackNavigation} from 'react-navigation';
 import { PersistGate } from 'redux-persist/integration/react'
@@ -16,7 +16,9 @@ export class App extends Component {
          <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                <StatusBar hidden/>
-               <AppWithNavigation/>
+               <Root>
+								 <AppWithNavigation/>
+							 </Root>
             </PersistGate>
          </Provider>
       )
