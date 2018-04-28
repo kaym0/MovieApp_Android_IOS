@@ -28,6 +28,7 @@ class Main extends Component {
 		if (this.props.discoverSettings === "TV") { 
 			return <DiscoverTV/>
 		}
+
 	}
 
   render() {

@@ -16,4 +16,4 @@ export const REFRESHING = 'REFRESHING';
 export const CHECK_USER = 'CHECK_USER';
 export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 export const LOGIN_COMPLETE = 'LOGIN_COMPLETE';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_STATUS = 'LOGIN_STATUS';

@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_COMPLETE, USER_LOGGED_IN, CHECK_USER, SEARCH_TEXT, MOVIE_SEARCH, REQUEST_TOKEN, SET_SESSION } from './types';
+import { LOGIN_STATUS, LOGIN_COMPLETE, USER_LOGGED_IN, CHECK_USER, SEARCH_TEXT, MOVIE_SEARCH, REQUEST_TOKEN, SET_SESSION } from './types';
 
 
 const API_KEY = "3e310aa84d4c1640df231f11e3ab3ea8";
@@ -59,36 +59,36 @@ export const loginUser = (values) => async (dispatch) => {
 							payload: resp3,					
 						})
 						dispatch({
-							type: LOGIN_SUCCESS,
+							type: LOGIN_STATUS,
 							success: true
 						})
 					} else {
 						dispatch({
-							type: LOGIN_SUCCESS,
+							type: LOGIN_STATUS,
 							success: false
 						})
 					}
 				}).catch((error) => {
 					dispatch({
-						type: LOGIN_SUCCESS,
+						type: LOGIN_STATUS,
 						success: false
 					})
 				})
 			}).catch((error) => {
 				dispatch({
-					type: LOGIN_SUCCESS,
+					type: LOGIN_STATUS,
 					success: false
 				})
 			})
 		}).catch((error) => {
 			dispatch({
-				type: LOGIN_SUCCESS,
+				type: LOGIN_STATUS,
 				success: false
 			})
 		})
 	} catch (error){
 		dispatch({
-			type: LOGIN_SUCCESS,
+			type: LOGIN_STATUS,
 			success: false
 		})
 	}

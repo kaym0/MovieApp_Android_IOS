@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { Image, View, Text, StyleSheet } from 'react-native';
+import { Button, Card, CardItem, Title, Body } from 'native-base';
 import { connect } from 'react-redux';
-import { Card, CardItem, Title, Body } from 'native-base';
-import * as discoverActions from '../../../redux/actions/discoverActions';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import * as discoverActions from '../../../redux/actions/discoverActions'
+
 class MovieDescription extends Component {
 	constructor(props) {
 		super(props);
@@ -13,60 +14,75 @@ class MovieDescription extends Component {
 		return (
 			<View style={styles.container}>
 				<View style = {styles.backgroundContainer}>
-					<Image source={{uri: `https://image.tmdb.org/t/p/w300${this.props.movies[this.props.displayKey].backdrop_path}` }} resizeMode = 'cover' style = {styles.backdrop} />
+					<Image source={{uri: `https://image.tmdb.org/t/p/w300${this.props.movies[this.props.display_key].backdrop_path}` }} resizeMode = 'cover' style = {styles.backdrop} />
 				</View>
 				<View style = {styles.overlay}>
-					<Card padding style={styles.descriptionImageCard}>
-						<Image style = {styles.poster} source={{ uri: `https://image.tmdb.org/t/p/w300${this.props.movies[this.props.displayKey].poster_path}` }}/>
+					<Card transparent padding style={styles.descriptionImageCard}>
+						<Image style = {styles.poster} source={{ uri: `https://image.tmdb.org/t/p/w300${this.props.movies[this.props.display_key].poster_path}` }}/>
 					</Card>
-					<Card style={styles.descriptionTextCard}>
-						<CardItem header style={styles.descriptionHeaderContainer}>
-							<Title numberOfLines={3} style={styles.descriptionHeaderText}>{this.props.movies[this.props.displayKey].title}</Title>
+					<Card transparent style={styles.descriptionTextCard}>
+						<CardItem style={styles.descriptionHeaderContainer}>
+							<Text numberOfLines={2} style={styles.descriptionHeaderText}>{this.props.movies[this.props.display_key].name}</Text>
 						</CardItem>
 						<CardItem cardBody style={styles.descriptionBodyContainer}>
-							<Body>
-								<Text style={styles.descriptionBodyText} numberOfLines={8}>{this.props.movies[this.props.displayKey].overview}</Text>
+							<Body style={styles.descriptionBody}>
+								<Text style={styles.descriptionBodyText} numberOfLines={9}>{this.props.movies[this.props.display_key].overview}</Text>
 							</Body>
 						</CardItem>
-						<CardItem style={styles.descriptionFooterContainer}/>
+						<CardItem button style={styles.descriptionFooterContainer}>
+							<Button style={styles.descriptionButton} rounded>
+								<Text style={styles.buttonText}>   Read More    </Text>
+							</Button>
+						</CardItem>
 					</Card>
+
 				</View>
 			</View>
 		);
 	}
 }
 
-MovieDescription.propTypes = {
-	displayMovie: PropTypes.func,
-	movies: PropTypes.object,
-}
-
 const styles = StyleSheet.create({
+	buttonText: {
+		color: "white"//"#DBDEDF"
+	},
+	descriptionButton: {
+		backgroundColor: "#D72160"
+	},
+	descriptionBody: {
+		backgroundColor: 'rgba(0,0,0,0.3)',
+		justifyContent: 'center',
+		alignItems: 'flex-start',
+		borderRadius: 20,
+		padding: 10
+	},
 	descriptionFooterContainer: {
 		flex: 1,
-		backgroundColor: "transparent"
+		backgroundColor: "transparent",
+		justifyContent: 'center'
 	},
 	descriptionBodyText: {
-		color: "#DBDEDF"
+		color: "#DBDEDF",
+		opacity: 2,
 	},
 	descriptionBodyContainer: {
-		flex: 2, 
+		flex: 3, 
 		padding: 10,
 		backgroundColor: "transparent", 
 		flexDirection: 'row',
 	},
 	descriptionHeaderText: {
 		color: "#DBDEDF",
-		flexWrap: 'wrap',
 		fontFamily: "Kiona",
-		fontSize: 20
+		fontSize: 20,
+		textAlign: 'center',
+		justifyContent: 'center'
 	},
 	descriptionHeaderContainer: {
 		flex: 1,
-		alignItems: 'flex-start',
-		flexWrap: "wrap",
-		backgroundColor: "transparent",
-		justifyContent: "center",
+		flexDirection: 'row',
+		backgroundColor: 'transparent',
+		justifyContent: 'center',
 	},
 	descriptionTextCard: {
 		flex: 3, 
@@ -77,7 +93,6 @@ const styles = StyleSheet.create({
 		flex: 2, 
 		backgroundColor: "transparent", 
 		borderColor: "transparent", 
-	
 	},
 	backgroundContainer: {
 		position: 'absolute',
@@ -108,14 +123,20 @@ const styles = StyleSheet.create({
 	 },
 });
 
+MovieDescription.propTypes = {
+	movies: PropTypes.object,
+	display_key: PropTypes.number,
+	update_movie_key: PropTypes.func
+}
+
 const mapStateToProps = (state) => ({
 	movies: state.discover.movies,
-	displayKey: state.discover.movieInfoKey
+	display_key: state.discover.movie_info_key
 })
 
 const mapDispatchToProps = (dispatch) =>  {
 	return {
-		update_Movie_Key: (key) => dispatch(discoverActions.update_Movie_key(key))
+		update_movie_key: (key) => dispatch(discoverActions.update_movie_key(key))
 	}
 };
 

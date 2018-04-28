@@ -9,26 +9,11 @@ const movieState = {
 	},
 	searchText: ""
 }
-/*
-results : {
-	vote_count: null,
-	id: null,
-	video: null,
-	vote_average: null,
-	title: null,
-	popularity: null,
-	poster_path: null,
-	language: null,
-	original_title: null,
-	gendre_ids: [
-		null
-	],
-	backdrop_path:	null,
-	adult: null,
-	release_date: null
-}
-*/
-//function to turn 'results' array into an object for easier usage. god damn arrays	
+
+/**
+ * @param arr array to convert into an object.
+ * @example [{a: 1}, {b: 1}] returns {{a: 1}, {b: 1}}
+ */
 function toObject(arr) {
 	var rv = {};
 	for (var i = 0; i < arr.length; ++i)
@@ -36,25 +21,26 @@ function toObject(arr) {
 	return rv;
  }
 
+ /**
+ * @description double tab after case declaration to help easily identify where cases begin and end at a glance
+ */
 export const movieReducer = (state = movieState, action) => {
 	switch (action.type) {
 		case SEARCH_MOVIE:	
-		 //let's assign our array to become an object here.
-		 var newobject = toObject(action.results);
-			return {
-				...state,
-				page: action.page,
-				total_results: action.total_results,
-				total_pages: action.total_pages,
-				results: newobject
-			}
-			// updates text
+				var newobject = toObject(action.results);
+				return {
+					...state,
+					page: action.page,
+					total_results: action.total_results,
+					total_pages: action.total_pages,
+					results: newobject
+				}
 		case SEARCH_TEXT:
-			return {
-				...state,
-				searchText: action.payload
-			};
+				return {
+					...state,
+					searchText: action.payload
+				};
 		default:
-			return state;
+				return state;
 	}
 }

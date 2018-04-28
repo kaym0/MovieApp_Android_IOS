@@ -4,6 +4,7 @@ import { Button, Card, CardItem, Title, Body } from 'native-base';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as discoverActions from '../../../redux/actions/discoverActions'
+
 class TVDescription extends Component {
 	constructor(props) {
 		super(props);
@@ -13,27 +14,28 @@ class TVDescription extends Component {
 		return (
 			<View style={styles.container}>
 				<View style = {styles.backgroundContainer}>
-					<Image source={{uri: `https://image.tmdb.org/t/p/w300${this.props.tv[this.props.displayKey].backdrop_path}` }} resizeMode = 'cover' style = {styles.backdrop} />
+					<Image source={{uri: `https://image.tmdb.org/t/p/w300${this.props.tv[this.props.display_key].backdrop_path}` }} resizeMode = 'cover' style = {styles.backdrop} />
 				</View>
 				<View style = {styles.overlay}>
-					<Card padding style={styles.descriptionImageCard}>
-						<Image style = {styles.poster} source={{ uri: `https://image.tmdb.org/t/p/w300${this.props.tv[this.props.displayKey].poster_path}` }}/>
+					<Card transparent padding style={styles.descriptionImageCard}>
+						<Image style = {styles.poster} source={{ uri: `https://image.tmdb.org/t/p/w300${this.props.tv[this.props.display_key].poster_path}` }}/>
 					</Card>
-					<Card style={styles.descriptionTextCard}>
+					<Card transparent style={styles.descriptionTextCard}>
 						<CardItem style={styles.descriptionHeaderContainer}>
-							<Text numberOfLines={2} style={styles.descriptionHeaderText}>{this.props.tv[this.props.displayKey].name}</Text>
+							<Text numberOfLines={2} style={styles.descriptionHeaderText}>{this.props.tv[this.props.display_key].name}</Text>
 						</CardItem>
 						<CardItem cardBody style={styles.descriptionBodyContainer}>
 							<Body style={styles.descriptionBody}>
-								<Text style={styles.descriptionBodyText} numberOfLines={9}>{this.props.tv[this.props.displayKey].overview}</Text>
+								<Text style={styles.descriptionBodyText} numberOfLines={9}>{this.props.tv[this.props.display_key].overview}</Text>
 							</Body>
 						</CardItem>
 						<CardItem button style={styles.descriptionFooterContainer}>
 							<Button style={styles.descriptionButton} rounded>
-								<Text>   Read More    </Text>
+								<Text style={styles.buttonText}>   Read More    </Text>
 							</Button>
 						</CardItem>
 					</Card>
+
 				</View>
 			</View>
 		);
@@ -41,12 +43,17 @@ class TVDescription extends Component {
 }
 
 TVDescription.propTypes = {
-
+	tv: PropTypes.object,
+	display_key: PropTypes.number,
+	update_tv_key: PropTypes.func
 }
 
 const styles = StyleSheet.create({
+	buttonText: {
+		color: "white"
+	},
 	descriptionButton: {
-		backgroundColor: "#6EBFFC"
+		backgroundColor: "#D72160"
 	},
 	descriptionBody: {
 		backgroundColor: 'rgba(0,0,0,0.3)',
@@ -93,7 +100,6 @@ const styles = StyleSheet.create({
 		flex: 2, 
 		backgroundColor: "transparent", 
 		borderColor: "transparent", 
-	
 	},
 	backgroundContainer: {
 		position: 'absolute',
@@ -126,12 +132,12 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
 	tv: state.discover.tv,
-	displayKey: state.discover.tvInfoKey
+	display_key: state.discover.tv_info_key
 })
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		update_TV_Key: (key) => dispatch(discoverActions.update_TV_Key(key))
+		update_tv_key: (key) => dispatch(discoverActions.update_tv_key(key))
 	}
 }
 

@@ -11,7 +11,6 @@ class Layout extends Component {
 	}
 
 	openDrawer = () => {
-		console.log(this.props.navigation);
 		const navigation = this.props.navigation;
 		navigation.navigate('DrawerToggle');
 	}

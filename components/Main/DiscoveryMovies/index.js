@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import { TouchableHighlight, View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
-import { Header,Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content}  from 'native-base';
+import { Header,Container, Card, CardItem, Left, Body, Right, Title, Button, Icon, Content, Spinner}  from 'native-base';
 import * as discoverActions from '../../../redux/actions/discoverActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import MovieDescription from './description';
-
+import InfiniteScrollView from 'react-native-infinite-scroll-view';
 
 class DiscoverMovies extends Component { 
 	constructor(props) {
@@ -18,8 +18,13 @@ class DiscoverMovies extends Component {
 	componentDidMount() {
 		this.props.discoverMovies();
 	}
-	/// renders stars
-	/*renderStars(average) {
+	/**
+	 * @name Old render stars methiod, maybe use later
+	 * @param average: average number 
+	 * of stars which is then divided by 2 to make out of
+	 *  5 stars instead of 10
+	 
+	 renderStars(average) {
 		let stars = average/2;
 		const a = [];
 		let key = 1;
@@ -39,8 +44,20 @@ class DiscoverMovies extends Component {
 		}
 	}*/
 
+	loadNextPage = async () => {
+		this.props._refreshing(false);
+		let page = this.props.page;
+		page++;
+		this.props.update_movie_discovery_page(page).then(() => {
+			setTimeout(() => {
+				this.props._refreshing(true);
+			},4000);
+			}
+		)
+	}
+
 	updateDisplayInfo = (i) => {
-		this.props.update_Movie_Key(i)
+		this.props.update_movie_key(i)
 	}
 
 	render () { 
@@ -70,9 +87,19 @@ class DiscoverMovies extends Component {
 						<Text style={styles.listName}>Popular</Text>
 					</Container>
 					<Container style={{flex: 2}}>
-						<Content horizontal={true}>
-							{Movies}
-						</Content>
+						<InfiniteScrollView
+								ref="_scrollView"
+								onLoadMoreAsync={this.loadNextPage.bind(this)}
+								canLoadMore={this.props.refreshing}
+								horizontal={true}
+								style={styles.InfiniteScrollView}
+							>
+								{Movies}
+							{ this.props.refreshing===false
+							? (<Card transparent style={{backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center'}}><Spinner/></Card>)
+							: (null)
+							}
+						</InfiniteScrollView>
 					</Container>
 				</Container>);
 	}
@@ -155,7 +182,11 @@ DiscoverMovies.propTypes = {
 	total_results: PropTypes.number,
 	total_pages: PropTypes.number,
 	movie: PropTypes.object,
-	searchText: PropTypes.string
+	searchText: PropTypes.string,
+	display_key: PropTypes.number,
+	update_movie_key: PropTypes.func,
+	update_movie_discovery_page: PropTypes.func,
+	_refreshing: PropTypes.func
  };
 
  DiscoverMovies.getInitialProps = () => {
@@ -167,13 +198,16 @@ const mapStateToProps = (state) => ({
 	total_results: state.discover.total_results,
 	total_pages: state.discover.total_pages,
 	movies: state.discover.movies,
-	displayKey: state.discover.movieInfoKey,
+	display_key: state.discover.movie_info_key,
+	refreshing: state.discover.refreshing
 })
 
 const mapDispatchToProps = (dispatch) =>  {
 	return {
 		discoverMovies: () => dispatch(discoverActions.discoverMovies()),
-		update_Movie_Key: (key) => dispatch(discoverActions.update_Movie_Key(key)),
+		update_movie_key: (key) => dispatch(discoverActions.update_movie_key(key)),
+		update_movie_discovery_page: (page) => dispatch(discoverActions.update_movie_discovery_page(page)),
+		_refreshing: (status) => dispatch(discoverActions._refreshing(status)),
 	}
 };
 

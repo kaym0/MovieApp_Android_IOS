@@ -5,12 +5,17 @@ import { Content, Container, Button, Icon, Toast } from 'native-base'
 import PropTypes from 'prop-types';
 import t from 'tcomb-form-native';
 import * as authActions from '../../redux/actions/autheticationActions'
+import { USER_LOGGED_IN } from '../../redux/actions/types';
+
+/**
+ * @name tcomb setup
+ */
 const Form =  t.form.Form;
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet);
 stylesheet.textbox.normal.color = "#DBDEDF"
 stylesheet.controlLabel.normal.color = '#DBDEDF';
-stylesheet.controlLabel.normal.fontFamily = "Kiona"
-import { USER_LOGGED_IN } from '../../redux/actions/types';
+stylesheet.controlLabel.normal.fontFamily = "Kiona";
+
 const LoginForm = t.struct({
 	username: t.String,
 	password: t.String
@@ -35,8 +40,9 @@ const options = {
 		}
 	}
 }
-
-
+/** 
+ * @name Login Component
+**/
 class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -56,14 +62,13 @@ class Login extends Component {
 				try {
 						this.props.loginUser(value)
 						.then(() => {
-							if (this.props.login_success === true) {
+							if (this.props.login_status === true) {
 								Toast.show({
 									text: "Success! Logging you in..",
 									buttonText: "Okay",
 									type: "success"
 								})
 								this.clearForm();
-								//this.props.loginComplete(response);
 								setTimeout(() => {
 									navigation.goBack();
 								}, 1000)
@@ -77,83 +82,25 @@ class Login extends Component {
 							}
 						}
 					)
-						/*let res1 = await fetch(`https://api.themoviedb.org/3/authentication/token/new?api_key=${API_KEY}`);
-						let response1 = await res1.json()
-						.then( async (resp1) => { 
-							let firstRequestToken = resp1.request_token;
-							let res2 = await fetch(`https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=${API_KEY}&username=${value.username}&password=${value.password}&request_token=${firstRequestToken}`)
-							let response2 = await res2.json()
-							.then( async(resp2)=>{
-								let secondRequestToken = resp2.request_token;
-								let res3 = await fetch(`https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}&request_token=${secondRequestToken}`)
-								let response3 = await res3.json()
-								.then((response3) => {
-									console.log(response3);
-									console.log(response3.success);
-									if (response3.success == true) {
-										Toast.show({
-										text: "Success! Logging you in..",
-										buttonText: "Okay",
-										type: "success"
-										})
-										this.clearForm();
-										this.props.loginComplete(response3);
-										setTimeout(() => {
-											navigation.goBack();
-										}, 1000)
-									} else {
-										this.clearForm();
-									Toast.show({
-										text: "Username or password was incorrect.",
-										buttonText: "Okay",
-										type: "danger"
-									})
-									}
-								}).catch((error) => {
-									console.error(error);
-									this.clearForm();
-									Toast.show({
-										text: "Sorry, there was an error logging in!",
-										buttonText: "Okay",
-										type: "danger"
-									})
-								})
-							}).catch((error) => {
-								console.error(error);
-								this.clearForm();
-								Toast.show({
-									text: "Sorry, there was an error logging in!",
-									buttonText: "Okay",
-									type: "danger"
-								})
-							})
-						}).catch((error) => {
-							console.error(error);
-							this.clearForm();
-							Toast.show({
-								text: "Sorry, there was an error logging in!",
-								buttonText: "Okay",
-								type: "danger"
-							})
-						})*/
-					} catch (error) {
+				} catch (error) {
 						this.clearForm();
 						Toast.show({
 							text: "Sorry, there was an error logging in!",
 							buttonText: "Okay",
 							type: "danger"
 						})
-					}
 				}
 			}
 		}
+	}
+
 	onChange = (value) => {
 	  this.props.value = value;
 	}
+
 	clearForm = () => {
 		this.props.value = null;
 	}
-
 
 	 render() {
 			return (
@@ -176,9 +123,13 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-
+	value: PropTypes.string,
+	login_status: PropTypes.bool.isRequired
 }
 
+/**
+ * @name styles
+ */
 const styles = StyleSheet.create({
 	container:{
 		backgroundColor: "#191B28",
@@ -201,7 +152,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
 	value: state.local.value,
-	login_success: state.local.login_success
+	login_status: state.auth.login_status
 })
 
 const mapDispatchToProps = (dispatch) => {
