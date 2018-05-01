@@ -62,24 +62,24 @@ class DiscoverMovies extends Component {
 
 	render () { 
 		const Movies = Object.values(this.props.movies).map((movie,i) => (
-		<TouchableHighlight key={i} onPress={() => this.updateDisplayInfo(i)}>
-			<Card style={styles.cardMain}>
-				<CardItem style={styles.cardImageContainer} cardBody>
-					<Image 
-					button
-					source={{uri: `https://image.tmdb.org/t/p/w300${movie.poster_path}`}} 
-					style={{height:300 , flex: 1}}
-					resizeMode="contain"
-					/>
-				</CardItem>
-			</Card>
-		</TouchableHighlight>
-	));
+				<TouchableHighlight key={i} onPress={() => this.updateDisplayInfo(i)}>
+					<Card style={styles.cardMain}>
+							<CardItem style={styles.cardImageContainer} cardBody>
+								<Image 
+									button
+									source={{uri: `https://image.tmdb.org/t/p/w300${movie.poster_path}`}} 
+									style={{height:300 , flex: 1}}
+									resizeMode="contain"
+								/>
+							</CardItem>
+						</Card>
+					</TouchableHighlight>
+			));
 	return (
 				<Container>
 					<View style={styles.container}>
 						{ (typeof this.props.movies[0]) !== "undefined"
-						? <MovieDescription {...this.props}/> 
+						? <MovieDescription {...this.props} navigation={this.props.navigation}/> 
 						: null 
 						}
 					</View>
@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
 	},
 	 container: {
 		flex: 2,
-		alignItems: 'center',
+    alignItems: 'center',
+    borderColor: 'black'
 	 },
 	cardMain:{
 		borderTopWidth: 0,

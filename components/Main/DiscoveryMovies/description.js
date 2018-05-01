@@ -3,11 +3,18 @@ import { Image, View, Text, StyleSheet } from 'react-native';
 import { Button, Card, CardItem, Title, Body } from 'native-base';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as discoverActions from '../../../redux/actions/discoverActions'
+import * as discoverActions from '../../../redux/actions/discoverActions';
+import * as localActions from '../../../redux/actions/localActions';
 
 class MovieDescription extends Component {
 	constructor(props) {
 		super(props);
+		this.moreInfo = this.moreInfo.bind(this);
+	}
+
+	moreInfo = () => {
+		this.props.navigation.navigate("MovieInfo");
+		this.props.sidebar_default_colors();
 	}
 
 	render() {
@@ -30,7 +37,7 @@ class MovieDescription extends Component {
 							</Body>
 						</CardItem>
 						<CardItem button style={styles.descriptionFooterContainer}>
-							<Button style={styles.descriptionButton} rounded>
+							<Button onPress={this.moreInfo} style={styles.descriptionButton} rounded>
 								<Text style={styles.buttonText}>   Read More    </Text>
 							</Button>
 						</CardItem>
@@ -99,11 +106,12 @@ const styles = StyleSheet.create({
 		top: 0,
 		bottom: 0,
 		left: 0,
-		right: 0,
+    right: 0,
+    paddingTop: 50
 	 },
 	 container: {
 		flex: 2,
-		alignItems: 'center',
+    alignItems: 'center',
 	 },
 	 overlay: {
 		opacity: 1,
@@ -118,6 +126,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	 },
 	 backdrop: {
+     borderColor: 'black',
 		flex: 1,
 		opacity: 0.5,
 	 },
@@ -126,7 +135,8 @@ const styles = StyleSheet.create({
 MovieDescription.propTypes = {
 	movies: PropTypes.object,
 	display_key: PropTypes.number,
-	update_movie_key: PropTypes.func
+	update_movie_key: PropTypes.func,
+	sidebar_default_colors: PropTypes.func
 }
 
 const mapStateToProps = (state) => ({
@@ -136,7 +146,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) =>  {
 	return {
-		update_movie_key: (key) => dispatch(discoverActions.update_movie_key(key))
+		update_movie_key: (key) => dispatch(discoverActions.update_movie_key(key)),
+		sidebar_default_colors: () => dispatch(localActions.sidebar_default_colors()),
 	}
 };
 

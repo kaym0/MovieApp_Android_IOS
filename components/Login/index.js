@@ -5,6 +5,7 @@ import { Content, Container, Button, Icon, Toast } from 'native-base'
 import PropTypes from 'prop-types';
 import t from 'tcomb-form-native';
 import * as authActions from '../../redux/actions/autheticationActions'
+import * as userActions from '../../redux/actions/userActions'
 import { USER_LOGGED_IN } from '../../redux/actions/types';
 
 /**
@@ -52,6 +53,7 @@ class Login extends Component {
 		this.refs.form.getComponent('username').refs.input.focus();
 	}
 
+
 	onPress = async (dispatch) => {
 		const navigation = this.props.navigation
 		var value = this.refs.form.getValue();
@@ -69,6 +71,7 @@ class Login extends Component {
 									type: "success"
 								})
 								this.clearForm();
+								this.props.fetch_user_data(this.props.session_id);
 								setTimeout(() => {
 									navigation.goBack();
 								}, 1000)
@@ -152,13 +155,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
 	value: state.local.value,
-	login_status: state.auth.login_status
+	login_status: state.auth.login_status,
+	session_id: state.auth.session_id
 })
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		loginComplete: (response) => dispatch(authActions.loginComplete(response)),
-		loginUser: (login_values) => dispatch(authActions.loginUser(login_values))
+		loginUser: (login_values) => dispatch(authActions.loginUser(login_values)),
+		fetch_user_data: (session_id) => dispatch(userActions.fetch_user_data(session_id)),
 	}
 }
 

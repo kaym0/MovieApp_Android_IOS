@@ -60,12 +60,12 @@ export const discoverReducer = (state = discoverState, action) => {
 		case GET_MOVIE:
 				return {
 					...state,
-					movieInfoKey: action.key
+					movie_info_key: action.key
 				}
 		case GET_TV:
 				return {
 					...state,
-					tvInfoKey: action.key
+					tv_info_key: action.key
 				}
 		case CHANGE_DISCOVER_PAGE_TV:
 				var result_tv = Object.keys(state.tv).map(function(key) {

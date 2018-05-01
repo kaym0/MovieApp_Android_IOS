@@ -13,7 +13,6 @@ class DiscoverTV extends Component {
 	constructor(props) {
 		super(props);
 		this.updateDisplayInfo = this.updateDisplayInfo.bind(this);
-		this.leftPage = this.leftPage.bind(this);
 	}
 	componentDidMount (){
 		this.props.discoverTV();

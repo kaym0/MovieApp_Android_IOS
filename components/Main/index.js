@@ -9,7 +9,7 @@ import DiscoverTV from './DiscoverTV';
 import DiscoverMovies from './DiscoveryMovies';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as localActions from '../../redux/actions/localActions';
-
+import { Actions } from 'react-native-router-flux';
 //Random number generators
 function getRandomInt(max) {
 	return Math.floor(Math.random() * Math.floor(max));
@@ -22,18 +22,17 @@ class Main extends Component {
 
 	renderDiscover = () => {
 		if (this.props.discoverSettings === "Movies") {
-			return <DiscoverMovies/>
+			return <DiscoverMovies {...this.props}/>
 		} 
 
 		if (this.props.discoverSettings === "TV") { 
-			return <DiscoverTV/>
+			return <DiscoverTV {...this.props}/>
 		}
-
 	}
 
   render() {
 	 return (
-		 <Container style={{backgroundColor: "#191B28"}}>
+		<Container style={{backgroundColor: "#191B28", borderColor: 'transparent'}}>
 				{this.renderDiscover()}
 				<FooterFab/>
 		</Container>

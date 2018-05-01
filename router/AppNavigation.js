@@ -1,56 +1,57 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import { StackNavigator, DrawerNavigator } from 'react-navigation';
-
-//components
-import Layout from '../components/Layout';
+import React, {Component} from 'react';
+import { Platform, StyleSheet, Text, View, Dimensions } from 'react-native';
+import {Router, Modal, Scene, Drawer, Stack, ActionConst} from 'react-native-router-flux';
 import Main from '../components/Main';
-import Sidebar from '../components/Sidebar';
-import SearchMovie from '../components/SearchMovie';
-import Settings from '../components/Settings'
-import Login from '../components/Login'
-/**
- * @todo
- * import { Transitioner } from 'react-navigation';
- * import { Animated, Easing } from 'react-native';
- * */
+import Settings from '../components/Settings';
+import MovieInfo from '../components/Information/Movies'
+import TVInfo from '../components/Information/TV';
+import Sidebar from '../components/Sidebar'
+import Login from '../components/Login';
+import Layout from '../components/Layout/index.js'
+import NavBarView from '../components/Layout/NavBarView';
+import MenuIcon from  '../images/kaymo.jpeg';
 
- /**
-  * @todo transitionerconfig
-  * const transitionConfig = () => {}
-  */
-
-
- const DrawerStack =  DrawerNavigator({
-	Main: {screen: Main},
-	Settings: {screen: Settings},
-	Login: { screen: Login },
-},
-{
-	contentComponent: props => <Sidebar {...props}/>
+const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+const AppRouter = () => {
+	return (
+		<Router>
+			<Modal>
+				<Stack hideNavBar key="root"> 
+				<Drawer key="Drawer" hideNavBar contentComponent={Sidebar} drawerImage={MenuIcon} drawerWidth={deviceWidth/1.38} drawerHeight={deviceHeight}>
+							<Stack navBar={Layout} key="MainStack">
+								<Scene key="Main" initial={true} component={Main}/>
+								<Scene key="Settings" component={Settings}/>
+								<Scene key="MovieInfo" component={MovieInfo}/>
+								<Scene key="TVInfo" component={TVInfo}/>
+								<Scene key="Login" component={Login}/>
+							</Stack>
+						</Drawer>
+				</Stack>	
+			</Modal>
+		</Router>
+	)
 }
-)
+/*
+<Scene hideNavBar panHandlers={null}>
+							<Stack navBar={Layout} key="MainStack">
+								<Scene key="Main" initial={true} component={Main}/>
+								<Scene key="Settings" component={Settings}/>
+								<Scene key="MovieInfo" component={MovieInfo}/>
+								<Scene key="TVInfo" component={TVInfo}/>
+								<Scene key="Login" component={Login}/>
+							</Stack>
+						</Scene>
+						/*
 
-export const AppNavigator = StackNavigator({
-	Main: { screen: DrawerStack },
-	SearchMovie: { screen: SearchMovie },
-	Login: { screen: Login },
-}, 
-{ 
-	navigationOptions: { 
-		header: ({navigation}) => (
-			<Layout navigation={navigation} />
-		)
-	},
-})
+			/*	<Stack key="Navbar" titleStyle={{alignSelf: 'center'}}>
+						<Scene
+							key="Layout"
+							title="CustomNavBar"
+							navBar={Layout}
+							component={NavBarView}
+							back
+						/>
+					</Stack>*/
 
-class AppWithNavigation extends Component {
-   render() {
-      return (
-         <AppNavigator/>
-      )
-   }
-}
-
-
-export default AppWithNavigation;
+export default AppRouter;

@@ -3,6 +3,7 @@ import { Content, Container, Header, Left, Right, Body, Text, Icon, Button, Titl
 import { StyleSheet, View, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 class Layout extends Component {
 	constructor(props) {
@@ -11,27 +12,34 @@ class Layout extends Component {
 	}
 
 	openDrawer = () => {
-		const navigation = this.props.navigation;
-		navigation.navigate('DrawerToggle');
+		Actions.drawerOpen()
 	}
 	
    render () {
       return (
-         <View>
+         <View style={{borderColor: 'black'}}>
             <StatusBar hidden/>
-            <Header rounded noShadow="false" style={styles.header}>
-               <Left>
-                  <Button onPress={() => this.openDrawer()} transparent>
-                     <Icon style={styles.headerIcon} name="menu"></Icon>
-                  </Button>
+            <Header iosBarStyle="dark-content" style={styles.header}>
+            <Left style={{alignContent: 'center', justifyContent: 'center'}}>
+								 { Actions.currentScene === "Main"
+                  ? (
+											<Button onPress={() => this.openDrawer()} transparent>
+                     		<Icon style={styles.headerIcon} name="menu"></Icon>
+											</Button>
+										)
+									: (
+											<Button onPress={() => Actions.pop()} transparent>
+												<Icon style={styles.headerIcon} name="ios-arrow-back"></Icon>
+											</Button>
+										)
+								 }
                </Left>
                <Body>
                   <Title style={styles.headerTitle}>
                      Movie
                   </Title>
                </Body>
-               <Right>
-               </Right>
+               <Right/>
             </Header>
          </View>
       )
@@ -44,12 +52,10 @@ const styles = StyleSheet.create({
       flex: 1
    },
    header: {
-		marginTop: 0,
       backgroundColor: "#1E202D",
       alignItems: 'center',
       justifyContent: 'center',
-		borderBottomColor: "#847979",
-		borderColor: "#847979",
+      borderBottomWidth: 0,
    },
    headerTitle: {
       color: "#65656D",
@@ -73,7 +79,8 @@ Layout.propTypes = {
 const mapStateToProps = (state) => ({
    request_token: state.auth.request_token,
    session_id: state.auth.session_id,
-	 page: state.discover.page
+	 page: state.discover.page,
+	 go_back: state.local.go_back_state
 })
 
 const mapDispatchToProps = (dispatch) => ({
