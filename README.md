@@ -36,8 +36,7 @@ Section has not yet been written
 ## Images
 
 <br>
-<img src="/images/info.gif" height='694' width='348/>
+<img src="/images/info.gif" height='694' width='348'/>
 <br>
-This picture is old now, design has been reworked but I will leave it here.
-<br>
- <img src="/images/Main.png" height='694' width='348'/>
+This image is old and i've reworked the main page UI a bit. I'll keep it here for histories sake.
+<img src="/images/Main.png" height='694' width='348'/>
