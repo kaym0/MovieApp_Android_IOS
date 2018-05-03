@@ -25,12 +25,12 @@ export class App extends Component {
 		AppState.removeEventListener('change', this._handleAppStateChange);
 	}
 	
-	/*_handleAppStateChange = (nextAppState) => {
+	_handleAppStateChange = (nextAppState) => {
 		if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
 			console.log('App has come to the foreground!')
 		}
 		this.setState({appState: nextAppState});
-	}*/
+	}
    render () {
 		 if (this.state.appState === 'active') {
 

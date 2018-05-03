@@ -87,6 +87,14 @@
 		<string>raleway_semibold.ttf</string>
 		<string>Kiona-Itallic.ttf</string>
 		<string>Kiona-Regular.ttf</string>
+		<string>Nunito-Bold.ttf</string>
+		<string>Nunito-Regular.ttf</string>
+		<string>Kiona-Bold.ttf</string>
+		<string>Kiona-BoldItallic.ttf</string>
+		<string>Kiona-Light.ttf</string>
+		<string>Kiona-LightItallic.ttf</string>
+		<string>Kiona-SemiBold.ttf</string>
+		<string>Kiona-SemiBoldItallic.ttf</string>
 	</array>
 </dict>
 </plist>

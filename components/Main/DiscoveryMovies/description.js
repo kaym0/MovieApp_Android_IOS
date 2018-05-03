@@ -14,22 +14,29 @@ class MovieDescription extends Component {
 
 	moreInfo = () => {
 		this.props.navigation.navigate("MovieInfo");
-		this.props.sidebar_default_colors();
+    this.props.sidebar_default_colors();
+    this.props.fetch_movie_info(this.props.movies[this.props.display_key].id);
+    this.props.fetch_movie_recommendations(this.props.movies[this.props.display_key].id);
+    this.props.fetch_movie_credits(this.props.movies[this.props.display_key].id);
 	}
 
 	render() {
 		return (
 			<View style={styles.container}>
 				<View style = {styles.backgroundContainer}>
-					<Image source={{uri: `https://image.tmdb.org/t/p/w300${this.props.movies[this.props.display_key].backdrop_path}` }} resizeMode = 'cover' style = {styles.backdrop} />
+					<Image source={{uri: `https://image.tmdb.org/t/p/w500${this.props.movies[this.props.display_key].backdrop_path}` }} resizeMode = 'cover' style = {styles.backdrop} />
 				</View>
 				<View style = {styles.overlay}>
 					<Card transparent padding style={styles.descriptionImageCard}>
-						<Image style = {styles.poster} source={{ uri: `https://image.tmdb.org/t/p/w300${this.props.movies[this.props.display_key].poster_path}` }}/>
+						<CardItem style={{backgroundColor: "transparent", height: '100%', width: '100%'}}>
+              <Image style = {styles.poster} source={{ uri: `https://image.tmdb.org/t/p/w300${this.props.movies[this.props.display_key].poster_path}` }}/>
+            </CardItem>
 					</Card>
 					<Card transparent style={styles.descriptionTextCard}>
-						<CardItem style={styles.descriptionHeaderContainer}>
-							<Text numberOfLines={2} style={styles.descriptionHeaderText}>{this.props.movies[this.props.display_key].name}</Text>
+						<CardItem style={styles.cardItem_top_text}>
+              <Text adjustsFontSizeToFit={true} numberOfLines={2} style={styles.text_title}>
+                {this.props.movies[this.props.display_key].title}
+              </Text>
 						</CardItem>
 						<CardItem cardBody style={styles.descriptionBodyContainer}>
 							<Body style={styles.descriptionBody}>
@@ -42,7 +49,6 @@ class MovieDescription extends Component {
 							</Button>
 						</CardItem>
 					</Card>
-
 				</View>
 			</View>
 		);
@@ -50,18 +56,33 @@ class MovieDescription extends Component {
 }
 
 const styles = StyleSheet.create({
+  text_title: {
+    alignSelf: 'flex-start', 
+    justifyContent: 'flex-start',
+    fontFamily: 'Kiona', 
+    color: '#DBDEDF',
+    fontSize: 20,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  cardItem_top_text: {
+    backgroundColor: 'transparent', 
+    flex: 1.5,
+    alignItems: 'flex-start',
+  },
 	buttonText: {
-		color: "white"//"#DBDEDF"
+		color: "#2d3436"//"#DBDEDF"
 	},
 	descriptionButton: {
-		backgroundColor: "#D72160"
+		backgroundColor: "#6EBFFC",//"#D72160"
 	},
 	descriptionBody: {
 		backgroundColor: 'rgba(0,0,0,0.3)',
 		justifyContent: 'center',
 		alignItems: 'flex-start',
 		borderRadius: 20,
-		padding: 10
+    padding: 10,
+    flex: 4
 	},
 	descriptionFooterContainer: {
 		flex: 1,
@@ -73,33 +94,21 @@ const styles = StyleSheet.create({
 		opacity: 2,
 	},
 	descriptionBodyContainer: {
-		flex: 3, 
+		flex: 4, 
 		padding: 10,
 		backgroundColor: "transparent", 
 		flexDirection: 'row',
 	},
-	descriptionHeaderText: {
-		color: "#DBDEDF",
-		fontFamily: "Kiona",
-		fontSize: 20,
-		textAlign: 'center',
-		justifyContent: 'center'
-	},
-	descriptionHeaderContainer: {
-		flex: 1,
-		flexDirection: 'row',
-		backgroundColor: 'transparent',
-		justifyContent: 'center',
-	},
 	descriptionTextCard: {
-		flex: 3, 
+		flex: 1, 
 		backgroundColor: "transparent", 
 		borderColor: "transparent",
 	},
 	descriptionImageCard: {
-		flex: 2, 
+		flex: 1, 
 		backgroundColor: "transparent", 
-		borderColor: "transparent", 
+    borderColor: "transparent", 
+    alignItems: 'flex-start'
 	},
 	backgroundContainer: {
 		position: 'absolute',
@@ -107,23 +116,19 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		left: 0,
     right: 0,
-    paddingTop: 50
 	 },
 	 container: {
 		flex: 2,
     alignItems: 'center',
 	 },
 	 overlay: {
-		opacity: 1,
-		flexDirection: 'row',
-		flex: 1,
+    flexDirection: 'row',
+    flex: 1,
+    backgroundColor: 'transparent'
 	 },
 	 poster: { 
-		flex: 1,
 		width: "100%",
 		height: "100%",
-		resizeMode: "contain",
-		justifyContent: 'center',
 	 },
 	 backdrop: {
      borderColor: 'black',
@@ -136,7 +141,8 @@ MovieDescription.propTypes = {
 	movies: PropTypes.object,
 	display_key: PropTypes.number,
 	update_movie_key: PropTypes.func,
-	sidebar_default_colors: PropTypes.func
+  sidebar_default_colors: PropTypes.func,
+  fetch_movie_info: PropTypes.func
 }
 
 const mapStateToProps = (state) => ({
@@ -147,7 +153,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>  {
 	return {
 		update_movie_key: (key) => dispatch(discoverActions.update_movie_key(key)),
-		sidebar_default_colors: () => dispatch(localActions.sidebar_default_colors()),
+    sidebar_default_colors: () => dispatch(localActions.sidebar_default_colors()),
+    fetch_movie_info: (movie_id) => dispatch(discoverActions.fetch_movie_info(movie_id)),
+    fetch_movie_recommendations: (movie_id) => dispatch(discoverActions.fetch_movie_recommendations(movie_id)),
+    fetch_movie_credits: (movie_id) => dispatch(discoverActions.fetch_movie_credits(movie_id)),
 	}
 };
 

@@ -48,7 +48,8 @@ class DiscoverMovies extends Component {
 		this.props._refreshing(false);
 		let page = this.props.page;
 		page++;
-		this.props.update_movie_discovery_page(page).then(() => {
+    this.props.update_movie_discovery_page(page)
+    .then(() => {
 			setTimeout(() => {
 				this.props._refreshing(true);
 			},4000);
@@ -83,7 +84,7 @@ class DiscoverMovies extends Component {
 						: null 
 						}
 					</View>
-					<Container style={{flex: 0.1	, justifyContent: 'flex-end', backgroundColor: '#1E202D'}}>
+					<Container style={{flex: 0.175	, justifyContent: 'center', backgroundColor: '#1E202D', alignItems: 'center'}}>
 						<Text style={styles.listName}>Popular</Text>
 					</Container>
 					<Container style={{flex: 2}}>
@@ -116,7 +117,6 @@ const styles = StyleSheet.create({
 	 container: {
 		flex: 2,
     alignItems: 'center',
-    borderColor: 'black'
 	 },
 	cardMain:{
 		borderTopWidth: 0,

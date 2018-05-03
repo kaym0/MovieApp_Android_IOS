@@ -67,6 +67,14 @@
 		9590D538E5DD423786E39D93 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5209308AE7394CA6B5FD60A0 /* rubicon-icon-font.ttf */; };
 		7CE6721C95DB40B9819EB373 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C03B7AF97CA549C0B957F7B9 /* SimpleLineIcons.ttf */; };
 		4F22DB8286874648BD83BC8D /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEC3D6440F654F4E94E5BE6D /* Zocial.ttf */; };
+		8D1CEA290A454FC8B072E44B /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61E73BE1EACB4980A6603136 /* Nunito-Bold.ttf */; };
+		383E28AAF84845229CC5D643 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B12E156EC16476FB384533C /* Nunito-Regular.ttf */; };
+		AB16D5E2EF9C4D3AA290644F /* Kiona-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6EAD00D3DE1549D1A438600E /* Kiona-Bold.ttf */; };
+		2D67E0D9040D4ACDA7B0200A /* Kiona-BoldItallic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B00F763DA3294B96B33CAE3D /* Kiona-BoldItallic.ttf */; };
+		9363C57B1B48427ABA338D74 /* Kiona-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 787E9E35F4784A24AD58C76E /* Kiona-Light.ttf */; };
+		F25410155D3B43FDA0195B5F /* Kiona-LightItallic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58248A51F6DA4C0FB3E6ECAC /* Kiona-LightItallic.ttf */; };
+		D5A1C855D15242209BF90DFF /* Kiona-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A037AA882A74CED8618D757 /* Kiona-SemiBold.ttf */; };
+		9F77B63BDC994DD7BD242359 /* Kiona-SemiBoldItallic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 408F1A367A8D4F8EB8A412C9 /* Kiona-SemiBoldItallic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -417,6 +425,14 @@
 		5209308AE7394CA6B5FD60A0 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; name = "rubicon-icon-font.ttf"; path = "../assets/fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		C03B7AF97CA549C0B957F7B9 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../assets/fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		DEC3D6440F654F4E94E5BE6D /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../assets/fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		61E73BE1EACB4980A6603136 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; name = "Nunito-Bold.ttf"; path = "../assets/fonts/Nunito-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0B12E156EC16476FB384533C /* Nunito-Regular.ttf */ = {isa = PBXFileReference; name = "Nunito-Regular.ttf"; path = "../assets/fonts/Nunito-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6EAD00D3DE1549D1A438600E /* Kiona-Bold.ttf */ = {isa = PBXFileReference; name = "Kiona-Bold.ttf"; path = "../assets/fonts/Kiona-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B00F763DA3294B96B33CAE3D /* Kiona-BoldItallic.ttf */ = {isa = PBXFileReference; name = "Kiona-BoldItallic.ttf"; path = "../assets/fonts/Kiona-BoldItallic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		787E9E35F4784A24AD58C76E /* Kiona-Light.ttf */ = {isa = PBXFileReference; name = "Kiona-Light.ttf"; path = "../assets/fonts/Kiona-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		58248A51F6DA4C0FB3E6ECAC /* Kiona-LightItallic.ttf */ = {isa = PBXFileReference; name = "Kiona-LightItallic.ttf"; path = "../assets/fonts/Kiona-LightItallic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3A037AA882A74CED8618D757 /* Kiona-SemiBold.ttf */ = {isa = PBXFileReference; name = "Kiona-SemiBold.ttf"; path = "../assets/fonts/Kiona-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		408F1A367A8D4F8EB8A412C9 /* Kiona-SemiBoldItallic.ttf */ = {isa = PBXFileReference; name = "Kiona-SemiBoldItallic.ttf"; path = "../assets/fonts/Kiona-SemiBoldItallic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -732,6 +748,14 @@
 				5209308AE7394CA6B5FD60A0 /* rubicon-icon-font.ttf */,
 				C03B7AF97CA549C0B957F7B9 /* SimpleLineIcons.ttf */,
 				DEC3D6440F654F4E94E5BE6D /* Zocial.ttf */,
+				61E73BE1EACB4980A6603136 /* Nunito-Bold.ttf */,
+				0B12E156EC16476FB384533C /* Nunito-Regular.ttf */,
+				6EAD00D3DE1549D1A438600E /* Kiona-Bold.ttf */,
+				B00F763DA3294B96B33CAE3D /* Kiona-BoldItallic.ttf */,
+				787E9E35F4784A24AD58C76E /* Kiona-Light.ttf */,
+				58248A51F6DA4C0FB3E6ECAC /* Kiona-LightItallic.ttf */,
+				3A037AA882A74CED8618D757 /* Kiona-SemiBold.ttf */,
+				408F1A367A8D4F8EB8A412C9 /* Kiona-SemiBoldItallic.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1228,6 +1252,14 @@
 				9590D538E5DD423786E39D93 /* rubicon-icon-font.ttf in Resources */,
 				7CE6721C95DB40B9819EB373 /* SimpleLineIcons.ttf in Resources */,
 				4F22DB8286874648BD83BC8D /* Zocial.ttf in Resources */,
+				8D1CEA290A454FC8B072E44B /* Nunito-Bold.ttf in Resources */,
+				383E28AAF84845229CC5D643 /* Nunito-Regular.ttf in Resources */,
+				AB16D5E2EF9C4D3AA290644F /* Kiona-Bold.ttf in Resources */,
+				2D67E0D9040D4ACDA7B0200A /* Kiona-BoldItallic.ttf in Resources */,
+				9363C57B1B48427ABA338D74 /* Kiona-Light.ttf in Resources */,
+				F25410155D3B43FDA0195B5F /* Kiona-LightItallic.ttf in Resources */,
+				D5A1C855D15242209BF90DFF /* Kiona-SemiBold.ttf in Resources */,
+				9F77B63BDC994DD7BD242359 /* Kiona-SemiBoldItallic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

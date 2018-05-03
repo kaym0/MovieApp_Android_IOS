@@ -50,10 +50,10 @@ TVDescription.propTypes = {
 
 const styles = StyleSheet.create({
 	buttonText: {
-		color: "white"
+		color: "#2d3436"
 	},
 	descriptionButton: {
-		backgroundColor: "#D72160"
+		backgroundColor: "#6EBFFC",//"#D72160"
 	},
 	descriptionBody: {
 		backgroundColor: 'rgba(0,0,0,0.3)',

@@ -12,7 +12,7 @@ class Layout extends Component {
 	}
 
 	openDrawer = () => {
-		Actions.drawerOpen()
+		Actions.drawerOpen();
 	}
 	
    render () {

@@ -7,7 +7,7 @@ import t from 'tcomb-form-native';
 import * as authActions from '../../redux/actions/autheticationActions'
 import * as userActions from '../../redux/actions/userActions'
 import { USER_LOGGED_IN } from '../../redux/actions/types';
-
+import { Actions } from 'react-native-router-flux';
 /**
  * @name tcomb setup
  */
@@ -55,7 +55,6 @@ class Login extends Component {
 
 
 	onPress = async (dispatch) => {
-		const navigation = this.props.navigation
 		var value = this.refs.form.getValue();
 		const API_KEY = "3e310aa84d4c1640df231f11e3ab3ea8";
 		if (value) {
@@ -73,7 +72,7 @@ class Login extends Component {
 								this.clearForm();
 								this.props.fetch_user_data(this.props.session_id);
 								setTimeout(() => {
-									navigation.goBack();
+									Actions.pop();
 								}, 1000)
 							} else {
 								this.clearForm();

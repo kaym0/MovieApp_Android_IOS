@@ -4393,6 +4393,13 @@ react-lifecycles-compat@^1.0.2:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-1.1.4.tgz#fc005c72849b7ed364de20a0f64ff58ebdc2009a"
 
+react-mixin@^3.0.5:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react-mixin/-/react-mixin-3.1.1.tgz#68749756bfe32699e561372a4aeecb926db72b7f"
+  dependencies:
+    object-assign "^4.0.1"
+    smart-mixin "^2.0.0"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -4422,6 +4429,18 @@ react-native-easy-grid@0.1.17:
   dependencies:
     lodash "^4.11.1"
 
+react-native-fade-image@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-fade-image/-/react-native-fade-image-1.0.1.tgz#0d23a38276a4b2d2c5457c1e66d5d811a457a8d5"
+
+react-native-fade-in-image@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-fade-in-image/-/react-native-fade-in-image-1.3.0.tgz#2804ad4bfbe78e2eee373e604437d5c2dec1d9b4"
+  dependencies:
+    react-clone-referenced-element "^1.0.1"
+    react-mixin "^3.0.5"
+    react-timer-mixin "^0.13.3"
+
 react-native-infinite-scroll-view@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/react-native-infinite-scroll-view/-/react-native-infinite-scroll-view-0.4.3.tgz#bc5dfb1645b8966bb6686d4cba899acb229ca003"
@@ -4440,6 +4459,10 @@ react-native-keyboard-aware-scroll-view@0.5.0:
   dependencies:
     prop-types "^15.6.0"
     react-native-iphone-x-helper "^1.0.1"
+
+react-native-responsive-image@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-responsive-image/-/react-native-responsive-image-2.3.1.tgz#3f8d3882061a8eae389d70a960e3e6436da9e354"
 
 react-native-router-flux@^4.0.0-beta.28:
   version "4.0.0-beta.28"
@@ -4617,7 +4640,7 @@ react-test-renderer@16.3.1:
     prop-types "^15.6.0"
     react-is "^16.3.1"
 
-react-timer-mixin@^0.13.2:
+react-timer-mixin@^0.13.2, react-timer-mixin@^0.13.3:
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.3.tgz#0da8b9f807ec07dc3e854d082c737c65605b3d22"
 
@@ -5086,6 +5109,10 @@ slash@^1.0.0:
 slide@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
+
+smart-mixin@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/smart-mixin/-/smart-mixin-2.0.0.tgz#a34a1055e32a75b30d2b4e3ca323dc99cb53f437"
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

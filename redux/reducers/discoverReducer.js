@@ -1,4 +1,7 @@
 import { 
+  MOVIE_CREDITS,
+  MOVIE_RECOMMENDATIONS,
+  MOVIE_INFO,
 	REFRESHING, 
 	CHANGE_DISCOVER_PAGE_TV, 
 	CHANGE_DISCOVER_PAGE_MOVIE,
@@ -14,7 +17,11 @@ const discoverState = {
 	total_results: 0,
 	total_pages: 0,
 	tv : {},
-	movies: {},
+  movies: {},
+  movie_info: {},
+  movie_recommendations: {},
+  cast: {},
+  crew: {},
 	movie_info_key: 0,
 	tv_info_key: 0,
 	refreshing: true
@@ -97,7 +104,31 @@ export const discoverReducer = (state = discoverState, action) => {
 				return {
 					...state,
 					refreshing: action.payload
-				}
+        }
+    case MOVIE_INFO:
+        let genres = toObject(action.payload.genres);
+        let production_companies = toObject(action.payload.production_companies);
+        let belongs_to_collection = toObject(action.payload.belongs_to_collection);
+        let spoken_languages = toObject(action.payload.spoken_languages)
+        let production_countries = toObject(action.payload.production_countries)
+        return {
+          ...state,
+          movie_info: {...action.payload, genres, production_companies, spoken_languages, production_countries}
+        }
+    case MOVIE_RECOMMENDATIONS:
+        let movierecommendations = toObject(action.payload);
+        return {
+          ...state,
+          movie_recommendations: movierecommendations
+        }
+    case MOVIE_CREDITS:
+        let cast = toObject(action.payload.cast);
+        let crew = toObject(action.payload.crew);
+        return {
+          ...state,
+          cast: cast,
+          crew: crew
+        }
 		default:
 				return state;
 	}

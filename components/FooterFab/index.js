@@ -19,7 +19,7 @@ class FooterFab extends Component {
 		position="bottomRight"
 		onPress={() => this.props.ToggleFab()}
 		>
-		<Icon name="ios-search" />
+		<Icon name="ios-search" style={{color: "#2d3436"}} />
 		<Button style={{ backgroundColor: '#770F34' }}>
 			<MaterialIcons style={styles.icons} name="tv" />
 		</Button>
@@ -37,7 +37,7 @@ FooterFab.propTypes = {
 }
 const styles = StyleSheet.create({
 	fab : {
-		backgroundColor: "#D72160",//"#ED4D4D",//"#266B8D",
+    backgroundColor: "#6EBFFC",//"#D72160",//"#ED4D4D",//"#266B8D",
 	},
 	icons: {
 		fontSize: 20,
