@@ -13,7 +13,10 @@ An application for both iOS and Android featuring The Movie Database as main sou
 
 ## Packages
 - react-native
-- react-navigation
+- <s>react-navigation</s> NO!
+- react-native-router-flux 
+- react-native-respoonsive-image
+- react-native-fade-in
 - redux
 - redux-persist
 - native-base
@@ -32,4 +35,9 @@ Section has not yet been written
 
 ## Images
 
+<br>
+<img src="/images/info.gif" height='694' width='348/>
+<br>
+This picture is old now, design has been reworked but I will leave it here.
+<br>
  <img src="/images/Main.png" height='694' width='348'/>
